@@ -1,0 +1,48 @@
+import React, { useEffect, useState } from "react";
+
+export default function PartialSlideMovie() {
+  const [movies, setMovies] = useState([]);
+  const apiKey = "b8892ef17f94739e8b1c3cb44d901d97";
+
+  useEffect(() => {
+    (async () => {
+      const response = await fetch(
+        `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`
+      );
+      try {
+        if (!response.ok) throw new Error(response.status, response.statusText);
+        const data = await response.json();
+        console.log(data.results);
+        const arrMovie = await data.results.map((item) => {
+          return {
+            title: item.title,
+            image: item.poster_path,
+            decription: item.overview,
+          };
+        });
+        // console.log(arrMovie);
+
+        setMovies(arrMovie);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, []);
+  return (
+    <>
+      <article className="hide-scrollbar flex overflow-x-scroll gap-[18px] mt-7 px-[180px]">
+        {movies.map((item, index) => {
+          return (
+            <figure ley={index} className="min-w-[265px] shrink-0">
+              <img
+                src={`https://image.tmdb.org/t/p/w500${item.image}`}
+                className="w-[265px]"
+              />
+              <h2 className="mt-2 text-sm wrap-break-word max-w-[200px]">{item.title}</h2>
+            </figure>
+          );
+        })}
+      </article>
+    </>
+  );
+}

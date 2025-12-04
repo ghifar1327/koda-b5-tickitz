@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import PartialSlideMovie from "../components/PartialSlideMovie";
 
 export default function HomePage() {
   return (
@@ -26,16 +27,16 @@ export default function HomePage() {
             <img src="/imgGrid4.png" alt="" className="row-span-2 w-full" />
           </figure>
         </hero>
-        <section className="px-6 md:px-[180px]">
-          <div className="mt-[70px]">
+        <article className="px-6 md:px-[180px]">
+          <section className="mt-[70px]">
             <p className="text-[#1D4ED8] font-bold">WHY CHOOSE US</p>
             <div className="max-w-[438px]">
               <p className="text-[32px]">
                 Unleashing the Ultimate Movie Experience
               </p>
             </div>
-          </div>
-          <article className="flex flex-col md:flex-row gap-[33px] mt-[33px]">
+          </section>
+          <section className="flex flex-col md:flex-row gap-[33px] mt-[33px]">
             <div className=" flex flex-col gap-[19px] items-center md:items-start">
               <img src="/Group 233.png" alt="" />
               <p>Guaranteed</p>
@@ -66,14 +67,19 @@ export default function HomePage() {
                 iste perferendis ab!
               </p>
             </div>
-          </article>
-        </section>
-        <section className="text-center flex flex-col gep-[14px] mt-[33.5px]">
+          </section>
+        </article>
+        <article className="text-center flex flex-col gep-[14px] mt-[33.5px]">
           <p className="text-[#1D4ED8] text-[18px] font-bold">MOVIES</p>
           <p className="text-[38px] ">
             Exciting Movies That Should Be Watched Today
           </p>
-        </section>
+        </article>
+        <PartialSlideMovie/>
+        <div className="flex justify-center items-center gap-3 text-[#1D4ED8] text-[18px] mt-[38px]">
+          <p>View All</p>
+          <img src="/arrow-up.png" alt="" />
+        </div>
       </main>
       <Footer />
     </>
