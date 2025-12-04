@@ -1,0 +1,113 @@
+import React from "react";
+import Header from "../components/Header";
+
+export default function HomePage() {
+  return (
+    <>
+      <Header />
+      <main className="mt-[49px] text-center md:text-start  md:mt-10">
+        <hero className="gap-[19px] flex flex-col md:flex-row md:justify-between px-6 md:px-[180px]">
+          <section className="flex flex-col gap-4 justify-center md:max-w-[568px]">
+            <p className="text-[#1D4ED8] text-[25px]">
+              MOVIE TICKET PURCHASES #1 IN INDONESIA
+            </p>
+            <p className=" text-[40px] font-medium md:text-[48px] ">
+              Experience the Magic of Cinema: Book Your Tickets Today
+            </p>
+            <p className="text-[20px]">Sign up and get the ticket with a lot of discount</p>
+          </section>
+          <figure className="grid grid-flow-col grid-rows-5 gap-3">
+            <img src="/imgGrid1.png" alt="" className="row-span-2 w-full" />
+            <img src="/imgGrid2.png" alt="" className="row-span-3 h-full" />
+            <img src="/imgGrid3.png" alt="" className="row-span-3 h-full" />
+            <img src="/imgGrid4.png" alt="" className="row-span-2 w-full"  />
+          </figure>
+        </hero>
+        <section className="px-6 md:px-[180px]">
+          <div className="mt-[70px]">
+            <p className="text-[#1D4ED8] font-bold">WHY CHOOSE US</p>
+            <p>Unleashing the Ultimate Movie Experience</p>
+          </div>
+          <article className="flex flex-col md:flex-row gap-[33px] mt-[33px]">
+            <div className=" flex flex-col gap-[19px] items-center md:items-start">
+              <img src="/Group 233.png" alt="" />
+              <p>Guaranteed</p>
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Numquam alias velit, ipsum soluta est sit dolorem nulla id
+                dolore, impedit mollitia voluptates eaque vel veniam, et eveniet
+                iste perferendis ab!
+              </p>
+            </div>
+            <div className="flex flex-col items-center gap-[19px] md:items-start">
+              <img src="/Group 233.png" alt="" />
+              <p>Affordable</p>
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Numquam alias velit, ipsum soluta est sit dolorem nulla id
+                dolore, impedit mollitia voluptates eaque vel veniam, et eveniet
+                iste perferendis ab!
+              </p>
+            </div>
+            <div className="flex flex-col items-center gap-[19px] md:items-start">
+              <img src="/Group 235.png" alt="" />
+              <p>24/7 Customer Support</p>
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Numquam alias velit, ipsum soluta est sit dolorem nulla id
+                dolore, impedit mollitia voluptates eaque vel veniam, et eveniet
+                iste perferendis ab!
+              </p>
+            </div>
+          </article>
+        </section>
+        <section className="text-center flex flex-col gep-[14px] mt-[33.5px]"  >
+          <p className="text-[#1D4ED8] text-[18px] font-bold">MOVIES</p>
+          <p className="text-[38px] ">Exciting Movies That Should Be Watched Today</p>
+        </section>
+        {/* <article className="flex px-[180px]">
+          <figure>
+            <img src="" alt="" />
+            <h2>Title</h2>
+            <span>gende 1</span>
+            <span>gende 2</span>
+          </figure>
+          <figure>
+            <img src="" alt="" />
+            <h2>Title</h2>
+            <span>gende 1</span>
+            <span>gende 2</span>
+          </figure>
+          <figure>
+            <img src="" alt="" />
+            <h2>Title</h2>
+            <span>gende 1</span>
+            <span>gende 2</span>
+          </figure>
+          <figure>
+            <img src="" alt="" />
+            <h2>Title</h2>
+            <span>gende 1</span>
+            <span>gende 2</span>
+          </figure>
+        </article>
+        <div className="flex justify-center items-center gap-[7px]">
+          <p className="text-blue-700">View All</p>
+          <img src="/src/assets/arrow-up.png" alt="" />
+        </div>
+        <article className="px-[180px]">
+          <div className="flex justify-between items-center">
+            <div>
+              <p>UPCOMING MOVIES</p>
+              <p>Exciting Movie Coming Soon</p>
+            </div>
+            <div>
+              <img src="" alt="" />
+              <img src="" alt="" />
+            </div>
+          </div>
+        </article> */}
+      </main>
+    </>
+  );
+}

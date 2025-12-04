@@ -3,24 +3,21 @@ import React from 'react'
 export default function Header() {
   return (
     <>
-    <header className="px-[180px] py-[26px]">
+    <header className="px-6 md:px-[180px] py-[26px]">
           <nav className="flex justify-between items-center">
             <div>
-              <img src="/src/assets/Tickitz 1.png" alt="" />
+              <img src="/Tickitz 1.png" alt="" className='w-[93px] h-[37px] md:w-[130px] md:h-[51px]' />
             </div>
-            <div className="flex gap-[60px]">
+            <div className="hidden md:flex gap-[60px]" >
               <p>Home</p>
               <p>Movie</p>
               <p>Buy Ticket</p>
             </div>
-            <div className="flex gap-4">
-              <button className="border border-blue-500 px-4 py-[5px] text-blue-500 rounded-md">
-                Sign In
-              </button>
-              <button className="bg-blue-500 text-white border-blue-500 px-4 py-[5px] rounded-md">
-                Sign Up
-              </button>
+            <div className="hidden md:flex gap-4">
+              <button className="border border-blue-500 px-4 py-[5px] text-blue-500 rounded-md">Sign In</button>
+              <button className="bg-blue-500 text-white border-blue-500 px-4 py-[5px] rounded-md">Sign Up</button>
             </div>
+            <img src="/hamburger-right.png" alt="" className='w-6 h-6 md:hidden '/>
           </nav>
         </header>
         <hr className="" />
