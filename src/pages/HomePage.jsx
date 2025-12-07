@@ -1,11 +1,25 @@
-import React from "react";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
 import PartialSlideMovie from "../components/PartialSlideMovie";
 import FormSubscribe from "../components/FormSubscribe";
 import { Link, Outlet } from "react-router";
+import UpComingMovie from "../components/UpComingMovie";
+import { useState } from "react";
 
 export default function HomePage() {
+  const [startSlice, SetStartSlice] = useState(0);
+  const [endSlice, setEndSlice] = useState(4);
+
+  function arrowLeft() {
+    if (startSlice > 0) {
+      SetStartSlice(startSlice - 4);
+      setEndSlice(endSlice - 4);
+    }
+  }
+  function arrorRight() {
+    if (endSlice < 20) {
+      SetStartSlice(startSlice + 4);
+      setEndSlice(endSlice + 4);
+    }
+  }
   return (
     <>
       <Outlet />
@@ -92,19 +106,19 @@ export default function HomePage() {
             <p className="text-[32px]">Exiting Movie Comming Soon</p>
           </div>
           <div className="hidden md:flex gap-[9px]">
-            <div className="w-[69px] h-[69px] bg-[#A0A3BD] rounded-[50%] flex justify-center items-center">
+            <button onClick={arrowLeft} className="w-[69px] h-[69px] bg-[#A0A3BD] rounded-[50%] flex justify-center items-center">
               <img src="/arrow-white.png" alt="" className="w-6 h-6" />
-            </div>
-            <div className="w-[69px] h-[69px]  rounded-[50%] bg-[#1D4ED8] flex justify-center items-center">
+            </button>
+            <button onClick={arrorRight} className="w-[69px] h-[69px]  rounded-[50%] bg-[#1D4ED8] flex justify-center items-center">
               <img
                 src="/arrow-white.png"
                 alt=""
                 className="w-6 h-6 rotate-180"
               />
-            </div>
+            </button>
           </div>
         </section>
-        <PartialSlideMovie />
+        <UpComingMovie startSlice={startSlice} endSlice={endSlice}/>
         <FormSubscribe />
       </main>
       <Outlet />
