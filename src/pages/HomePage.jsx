@@ -2,6 +2,7 @@ import React from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import PartialSlideMovie from "../components/PartialSlideMovie";
+import FormSubscribe from "../components/FormSubscribe";
 
 export default function HomePage() {
   return (
@@ -75,11 +76,33 @@ export default function HomePage() {
             Exciting Movies That Should Be Watched Today
           </p>
         </article>
-        <PartialSlideMovie/>
-        <div className="flex justify-center items-center gap-3 text-[#1D4ED8] text-[18px] mt-[38px]">
+        <PartialSlideMovie />
+        <div className="hidden md:flex justify-center items-center gap-3 text-[#1D4ED8] text-[18px] mt-[38px]">
           <p>View All</p>
           <img src="/arrow-up.png" alt="" />
         </div>
+        <p className="mt-[62px] md:px-[180px] text-[#1D4ED8] text-[18px] font-bold">
+          UPCOMING MOVIES
+        </p>
+        <section className="px-6 gap-4 md:px-[180px] hiden md:flex justify-between items-center">
+          <div>
+            <p className="text-[32px]">Exiting Movie Comming Soon</p>
+          </div>
+          <div className="hidden md:flex gap-[9px]">
+            <div className="w-[69px] h-[69px] bg-[#A0A3BD] rounded-[50%] flex justify-center items-center">
+              <img src="/arrow-white.png" alt="" className="w-6 h-6" />
+            </div>
+            <div className="w-[69px] h-[69px]  rounded-[50%] bg-[#1D4ED8] flex justify-center items-center">
+              <img
+                src="/arrow-white.png"
+                alt=""
+                className="w-6 h-6 rotate-180"
+              />
+            </div>
+          </div>
+        </section>
+        <PartialSlideMovie />
+        <FormSubscribe/>
       </main>
       <Footer />
     </>

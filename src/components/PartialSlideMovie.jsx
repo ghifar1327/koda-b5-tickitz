@@ -44,7 +44,7 @@ export default function PartialSlideMovie() {
 
   return (
     <>
-      <article className="hide-scrollbar flex overflow-x-scroll gap-[18px] mt-7 px-[180px]">
+      <article className="px-6 hide-scrollbar flex overflow-x-scroll gap-[18px] mt-7 md:px-[180px]">
         {movies.slice(0,4).map((item, index) => {
           return (
             <figure ley={index} className="min-w-[265px] shrink-0">
