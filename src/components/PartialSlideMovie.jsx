@@ -1,3 +1,4 @@
+import { format } from "date-fns";
 import React, { useEffect, useState } from "react";
 
 export default function PartialSlideMovie() {
@@ -13,12 +14,14 @@ export default function PartialSlideMovie() {
       try {
         if (!response.ok) throw new Error(response.status, response.statusText);
         const data = await response.json();
-        // console.log(data.results);
+        console.log(data.results);
         const arrMovie = await data.results.map((item) => {
           return {
+            id: item.id,
             title: item.title,
             image: item.poster_path,
             decription: item.overview,
+            release: item.release_date,
             genreId: item.genre_ids,
           };
         });
@@ -55,6 +58,7 @@ export default function PartialSlideMovie() {
               <h2 className="mt-2 text-sm wrap-break-word max-w-[200px]">
                 {item.title}
               </h2>
+              <h3>{format(item.release, 'MMMM yyyy')}</h3>
               <section className="flex gap-3">{item.genreId.slice(0,2).map((id)=>{
                 const genre = genres.find((g)=> g.id === id)
                 return(

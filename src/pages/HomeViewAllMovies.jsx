@@ -3,7 +3,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import FilterMovie from "../components/FilterMovie";
 import FormSubscribe from "../components/FormSubscribe";
-import { Outlet } from "react-router";
+import { Link, Outlet } from "react-router";
 
 export default function HomeViewAllMovies() {
   const apiKey = "b8892ef17f94739e8b1c3cb44d901d97";
@@ -21,6 +21,7 @@ export default function HomeViewAllMovies() {
         // console.log(data.results);
         const arrMovie = await data.results.map((item) => {
           return {
+            id: item.id,
             title: item.title,
             image: item.poster_path,
             decription: item.overview,
@@ -69,41 +70,48 @@ export default function HomeViewAllMovies() {
         <div className="grid grid-cols-4 gap-4">
           {movies.slice(0, 12).map((item, index) => {
             return (
-              <figure ley={index} className="min-w-[265px] shrink-0">
-                <img
-                  src={`https://image.tmdb.org/t/p/w500${item.image}`}
-                  className="w-[265px]"
-                />
-                <h2 className="mt-2 text-sm wrap-break-word max-w-[200px]">
-                  {item.title}
-                </h2>
-                <section className="flex gap-3">
-                  {item.genreId.slice(0, 2).map((id) => {
-                    const genre = genres.find((g) => g.id === id);
-                    return (
-                      <p key={id} className="border">
-                        {genre?.name}{" "}
-                      </p>
-                    );
-                  })}
-                </section>
-              </figure>
+              <Link to={`/detail/${item.id}`}>
+                <figure ley={index} className="min-w-[265px] shrink-0">
+                  <img src={`https://image.tmdb.org/t/p/w500${item.image}`} className="w-[265px]"/>
+                  <h2 className="mt-2 text-sm wrap-break-word max-w-[200px]">
+                    {item.title}
+                  </h2>
+                  <section className="flex gap-3">
+                    {item.genreId.slice(0, 2).map((id) => {
+                      const genre = genres.find((g) => g.id === id);
+                      return (
+                        <p key={id} className="border">
+                          {genre?.name}{" "}
+                        </p>
+                      );
+                    })}
+                  </section>
+                </figure>
+              </Link>
             );
           })}
         </div>
       </article>
       <section className="flex justify-center my-[63px] gap-5">
         <div className="bg-blue-500 text-white w-10 h-10 rounded-full flex justify-center">
-          <button className="bg-blue-500 text-white w-10 h-10 rounded-full ">1</button>
+          <button className="bg-blue-500 text-white w-10 h-10 rounded-full ">
+            1
+          </button>
         </div>
         <div className="bg-[#F9FAFB] text-[#A0A3BD] w-10 h-10 rounded-full flex justify-center">
-          <button className="bg-[#F9FAFB] text-[#A0A3BD] w-10 h-10 rounded-full ">2</button>
+          <button className="bg-[#F9FAFB] text-[#A0A3BD] w-10 h-10 rounded-full ">
+            2
+          </button>
         </div>
         <div className="bg-[#F9FAFB] text-[#A0A3BD] w-10 h-10 rounded-full flex justify-center">
-          <button className="bg-[#F9FAFB] text-[#A0A3BD] w-10 h-10 rounded-full ">3</button>
-          </div>
+          <button className="bg-[#F9FAFB] text-[#A0A3BD] w-10 h-10 rounded-full ">
+            3
+          </button>
+        </div>
         <div className="bg-[#F9FAFB] text-[#A0A3BD] w-10 h-10 rounded-full flex justify-center">
-          <button className="bg-[#F9FAFB] text-[#A0A3BD] w-10 h-10 rounded-full ">4</button>
+          <button className="bg-[#F9FAFB] text-[#A0A3BD] w-10 h-10 rounded-full ">
+            4
+          </button>
         </div>
         <div className="bg-blue-500 w-10 h-10 rounded-full flex justify-center">
           <button className="">
