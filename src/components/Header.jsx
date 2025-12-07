@@ -15,8 +15,8 @@ export default function Header() {
               <p>Buy Ticket</p>
             </div>
             <div className="hidden md:flex gap-4">
-              <button className="border border-blue-500 px-4 py-[5px] text-blue-500 rounded-md"><Link to="Auth">Sign In</Link></button>
-              <button className="bg-blue-500 text-white border-blue-500 px-4 py-[5px] rounded-md">Sign Up</button>
+              <button className="border border-blue-500 px-4 py-[5px] text-blue-500 rounded-md"><Link to="login">Sign In</Link></button>
+              <button className="bg-blue-500 text-white border-blue-500 px-4 py-[5px] rounded-md"><Link to="register">Sign Up</Link></button>
             </div>
             <img src="/hamburger-right.png" alt="" className='w-6 h-6 md:hidden '/>
           </nav>
