@@ -3,11 +3,12 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import PartialSlideMovie from "../components/PartialSlideMovie";
 import FormSubscribe from "../components/FormSubscribe";
+import { Link, Outlet } from "react-router";
 
 export default function HomePage() {
   return (
     <>
-      <Header />
+      <Outlet />
       <main className="mt-[49px] text-center md:text-start  md:mt-10">
         <hero className="gap-[19px] flex flex-col md:flex-row md:justify-between px-6 md:px-[180px]">
           <section className="flex flex-col gap-4 justify-center md:max-w-[568px]">
@@ -78,7 +79,9 @@ export default function HomePage() {
         </article>
         <PartialSlideMovie />
         <div className="hidden md:flex justify-center items-center gap-3 text-[#1D4ED8] text-[18px] mt-[38px]">
-          <p>View All</p>
+          <p>
+            <Link to="/ViewAll">View All</Link>
+          </p>
           <img src="/arrow-up.png" alt="" />
         </div>
         <p className="mt-[62px] md:px-[180px] text-[#1D4ED8] text-[18px] font-bold">
@@ -102,9 +105,9 @@ export default function HomePage() {
           </div>
         </section>
         <PartialSlideMovie />
-        <FormSubscribe/>
+        <FormSubscribe />
       </main>
-      <Footer />
+      <Outlet />
     </>
   );
 }

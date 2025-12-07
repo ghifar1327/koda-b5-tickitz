@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 
-export default function InputLogin({ setLogin }) {
+export default function InputLogin() {
+  const [login, setLogin] = useState({});
+  console.log(login);
   const [form, setForm] = useState({
     email: "",
     password: "",
   });
-
   function handleSubmit(e) {
     e.preventDefault();
     const userData = {
@@ -15,14 +16,12 @@ export default function InputLogin({ setLogin }) {
     setLogin(userData);
     setForm({ email: "", password: "" });
   }
-
   function hendleChange(e) {
     setForm((form) => ({
       ...form,
       [e.target.name]: e.target.value,
     }));
   }
-
   return (
     <form
       onSubmit={handleSubmit}

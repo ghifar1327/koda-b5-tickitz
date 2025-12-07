@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import FilterMovie from "../components/FilterMovie";
 import FormSubscribe from "../components/FormSubscribe";
+import { Outlet } from "react-router";
 
 export default function HomeViewAllMovies() {
   const apiKey = "b8892ef17f94739e8b1c3cb44d901d97";
@@ -47,7 +48,7 @@ export default function HomeViewAllMovies() {
   }, []);
   return (
     <>
-      <Header />
+      <Outlet />
       <hero>
         <div className="relative items-center bg-[url(/MaskGroup.png)] bg-cover bg-center h-[462px] w-full">
           <div className="absolute inset-0 bg-black/60">
@@ -93,24 +94,16 @@ export default function HomeViewAllMovies() {
       </article>
       <section className="flex justify-center my-[63px] gap-5">
         <div className="bg-blue-500 text-white w-10 h-10 rounded-full flex justify-center">
-          <button className="bg-blue-500 text-white w-10 h-10 rounded-full ">
-            1
-          </button>
+          <button className="bg-blue-500 text-white w-10 h-10 rounded-full ">1</button>
         </div>
         <div className="bg-[#F9FAFB] text-[#A0A3BD] w-10 h-10 rounded-full flex justify-center">
-          <button className="bg-[#F9FAFB] text-[#A0A3BD] w-10 h-10 rounded-full ">
-            2
-          </button>
+          <button className="bg-[#F9FAFB] text-[#A0A3BD] w-10 h-10 rounded-full ">2</button>
         </div>
         <div className="bg-[#F9FAFB] text-[#A0A3BD] w-10 h-10 rounded-full flex justify-center">
-          <button className="bg-[#F9FAFB] text-[#A0A3BD] w-10 h-10 rounded-full ">
-            3
-          </button>
-        </div>
+          <button className="bg-[#F9FAFB] text-[#A0A3BD] w-10 h-10 rounded-full ">3</button>
+          </div>
         <div className="bg-[#F9FAFB] text-[#A0A3BD] w-10 h-10 rounded-full flex justify-center">
-          <button className="bg-[#F9FAFB] text-[#A0A3BD] w-10 h-10 rounded-full ">
-            4
-          </button>
+          <button className="bg-[#F9FAFB] text-[#A0A3BD] w-10 h-10 rounded-full ">4</button>
         </div>
         <div className="bg-blue-500 w-10 h-10 rounded-full flex justify-center">
           <button className="">
@@ -119,7 +112,7 @@ export default function HomeViewAllMovies() {
         </div>
       </section>
       <FormSubscribe />
-      <Footer />
+      <Outlet />
     </>
   );
 }

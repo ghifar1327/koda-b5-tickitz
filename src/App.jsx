@@ -1,12 +1,9 @@
-import React from 'react'
-import LoginFormPage from './pages/LoginFormPage'
-import HomePage from './pages/HomePage'
-import HomeViewAllMovies from './pages/HomeViewAllMovies'
+// import React from 'react'
+// import HomePage from './peges/HomePage'
 
-export default function App() {
-  return (
-    // <><LoginFormPage/></>
-    // <HomePage/>
-    <HomeViewAllMovies/>
-  )
-}
+// export default function App() {
+//   return (
+//     // <><LoginFormPage/></>
+//     // <HomePage/>
+//   // )
+// }
