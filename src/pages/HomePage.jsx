@@ -1,6 +1,6 @@
 import PartialSlideMovie from "../components/PartialSlideMovie";
 import FormSubscribe from "../components/FormSubscribe";
-import { Link, Outlet } from "react-router";
+import { Link } from "react-router";
 import UpComingMovie from "../components/UpComingMovie";
 import { useState } from "react";
 
@@ -22,7 +22,6 @@ export default function HomePage() {
   }
   return (
     <>
-      <Outlet />
       <main className="mt-[49px] text-center md:text-start  md:mt-10">
         <hero className="gap-[19px] flex flex-col md:flex-row md:justify-between px-6 md:px-[180px]">
           <section className="flex flex-col gap-4 justify-center md:max-w-[568px]">
@@ -121,7 +120,6 @@ export default function HomePage() {
         <UpComingMovie startSlice={startSlice} endSlice={endSlice}/>
         <FormSubscribe />
       </main>
-      <Outlet />
     </>
   );
 }

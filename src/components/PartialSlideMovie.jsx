@@ -2,14 +2,13 @@ import { format } from "date-fns";
 import React, { useEffect, useState } from "react";
 
 export default function PartialSlideMovie() {
-  const apiKey = "b8892ef17f94739e8b1c3cb44d901d97";
   const [movies, setMovies] = useState([]);
   const [genres, setGenres] = useState([]);
 
   useEffect(() => {
     (async () => {
       const response = await fetch(
-        `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`
+        `https://api.themoviedb.org/3/movie/popular?api_key=${import.meta.env.VITE_API_KEY}`
       );
       try {
         if (!response.ok) throw new Error(response.status, response.statusText);
@@ -37,7 +36,7 @@ export default function PartialSlideMovie() {
   useEffect(() => {
     (async () => {
       const res = await fetch(
-        `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}`
+        `https://api.themoviedb.org/3/genre/movie/list?api_key=${import.meta.env.VITE_API_KEY}`
       );
       const data = await res.json();
       setGenres(data.genres);
@@ -48,7 +47,7 @@ export default function PartialSlideMovie() {
   return (
     <>
       <article className="px-6 hide-scrollbar flex overflow-x-scroll gap-[18px] mt-7 md:px-[180px]">
-        {movies.slice(0,4).map((item, index) => {
+        {movies.map((item, index) => {
           return (
             <figure ley={index} className="min-w-[265px] shrink-0">
               <img
@@ -62,7 +61,7 @@ export default function PartialSlideMovie() {
               <section className="flex gap-3">{item.genreId.slice(0,2).map((id)=>{
                 const genre = genres.find((g)=> g.id === id)
                 return(
-                  <p key={id} className="border">
+                  <p key={id} className="">
                     {genre?.name}
                     {" "}
                   </p>

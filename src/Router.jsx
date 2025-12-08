@@ -14,9 +14,8 @@ export default function Router() {
       <Routes>
         <Route path="/" element={<MainLayout />}>
           <Route index element={<HomePage />} />
-          <Route path="ViewAll" element={<HomeViewAllMovies />}>
-          </Route>
-            <Route path="detail/:id" element={<DetailMovie />} />
+          <Route path="ViewAll" element={<HomeViewAllMovies />} />
+          <Route path="detail/:id" element={<DetailMovie />} />
         </Route>
         <Route element={<AuthLayout />}>
           <Route path="login" element={<InputLogin />} />

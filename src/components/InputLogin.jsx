@@ -41,8 +41,7 @@ export default function InputLogin() {
             name="email"
             value={form.email}
             onChange={hendleChange}
-            className="border border-gray-300 rounded-md w-full p-3 text-base focus:outline-blue-500 "
-          />
+            className="border border-gray-300 rounded-md w-full p-3 text-base focus:outline-blue-500 "/>
         </label>
 
         <label className="flex flex-col gap-1">
@@ -53,12 +52,11 @@ export default function InputLogin() {
               name="password"
               value={form.password}
               onChange={hendleChange}
-              className="w-[85%] p-3 text-base outline-none"
-            />
+              className="w-[85%] p-3 text-base outline-none"/>
             <div className="flex justify-between items-center p-3">
               <img src="/eye.png" alt="" className="w-6" />
             </div>
-          </div>
+          </div> 
         </label>
         <div className="flex justify-end">
           <button type="button" className="text-blue-500 text-sm">
