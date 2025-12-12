@@ -49,7 +49,7 @@ export default function PartialSlideMovie() {
       <article className="px-6 hide-scrollbar flex overflow-x-scroll gap-[18px] mt-7 md:px-[180px]">
         {movies.map((item, index) => {
           return (
-            <figure ley={index} className="min-w-[265px] shrink-0">
+            <figure key={index} className="min-w-[265px] shrink-0">
               <img
                 src={`https://image.tmdb.org/t/p/w500${item.image}`}
                 className="w-[265px]"

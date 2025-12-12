@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router";
 
 export default function InputRegister() {
+  const [toogle, setToogle] = useState(true)
   const [login, setLogin] = useState({});
   console.log(login);
   const [form, setForm] = useState({
@@ -22,6 +23,9 @@ export default function InputRegister() {
       ...form,
       [e.target.name]: e.target.value,
     }));
+  }
+    function toogleEye(){
+    setToogle((prevToogle)=> !prevToogle)
   }
   return (
     <>
@@ -51,15 +55,15 @@ export default function InputRegister() {
             <p className="font-medium">Password</p>
             <div className="flex justify-between focus-within:border-blue-500  border border-gray-300 rounded-md ">
               <input
-                type="password"
+                type={toogle ? "password" : "text"}
                 name="password"
                 value={form.password}
                 onChange={hendleChange}
                 className="w-[85%] p-3 text-base outline-none"
               />
-              <div className="flex justify-between items-center p-3">
-                <img src="/eye.png" alt="" className="w-6" />
-              </div>
+              <button type='button' onClick={toogleEye} className=" bg-amber-200items-center p-3">
+                <img src={toogle? "/eyebrow.png":"/eye.png" } alt="" className="w-5" />
+              </button>
             </div>
           </label>
           <div className="flex gap-6 items-center">

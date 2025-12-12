@@ -93,7 +93,7 @@ export default function HomePage() {
         <PartialSlideMovie />
         <div className="hidden md:flex justify-center items-center gap-3 text-[#1D4ED8] text-[18px] mt-[38px]">
           <p>
-            <Link to="/ViewAll">View All</Link>
+            <Link to="/movie">View All</Link>
           </p>
           <img src="/arrow-up.png" alt="" />
         </div>

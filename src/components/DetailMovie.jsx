@@ -1,6 +1,7 @@
 import { format } from "date-fns";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import BookTicketInput from "./BookTicketInput";
 
 export default function DetailMovie() {
   const { id } = useParams();
@@ -60,12 +61,12 @@ export default function DetailMovie() {
           <div className="flex flex-col justify-end">
             <h1 className="text-[32px] font-bold">{movie.title}</h1>
             <div className="flex gap-[7px] mt-[23px]">
-              {movie.genres.slice(0, 2).map((g) => (
+              {movie.genres.slice(0, 2).map((genre) => (
                 <p
-                  key={g.id}
+                  key={genre.id}
                   className="bg-[#A0A3BD1A] text-[#A0A3BD] px-[18px] py-px text-[16px] rounded-2xl"
                 >
-                  {g.name}
+                  {genre.name}
                 </p>
               ))}
             </div>
@@ -100,6 +101,7 @@ export default function DetailMovie() {
           <p>{movie.overview}</p>
         </section>
       </article>
+        <BookTicketInput/>
     </>
   );
 }
