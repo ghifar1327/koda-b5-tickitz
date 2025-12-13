@@ -1,10 +1,10 @@
-import PartialSlideMovie from "../components/PartialSlideMovie";
-import FormSubscribe from "../components/FormSubscribe";
+import PartialSlideMovie from "./PartialSlideMovie";
+import FormSubscribe from "./FormSubscribe";
 import { Link } from "react-router";
-import UpComingMovie from "../components/UpComingMovie";
+import UpComingMovie from "./UpComingMovie";
 import { useState } from "react";
 
-export default function HomePage() {
+export default function HomePageComponent() {
   const [startSlice, SetStartSlice] = useState(0);
   const [endSlice, setEndSlice] = useState(4);
 
@@ -105,10 +105,16 @@ export default function HomePage() {
             <p className="text-[32px]">Exiting Movie Comming Soon</p>
           </div>
           <div className="hidden md:flex gap-[9px]">
-            <button onClick={arrowLeft} className="w-[69px] h-[69px] bg-[#A0A3BD] rounded-[50%] flex justify-center items-center">
+            <button
+              onClick={arrowLeft}
+              className="w-[69px] h-[69px] bg-[#A0A3BD] rounded-[50%] flex justify-center items-center"
+            >
               <img src="/arrow-white.png" alt="" className="w-6 h-6" />
             </button>
-            <button onClick={arrorRight} className="w-[69px] h-[69px]  rounded-[50%] bg-[#1D4ED8] flex justify-center items-center">
+            <button
+              onClick={arrorRight}
+              className="w-[69px] h-[69px]  rounded-[50%] bg-[#1D4ED8] flex justify-center items-center"
+            >
               <img
                 src="/arrow-white.png"
                 alt=""
@@ -117,7 +123,7 @@ export default function HomePage() {
             </button>
           </div>
         </section>
-        <UpComingMovie startSlice={startSlice} endSlice={endSlice}/>
+        <UpComingMovie startSlice={startSlice} endSlice={endSlice} />
         <FormSubscribe />
       </main>
     </>
