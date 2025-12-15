@@ -53,11 +53,11 @@ export default function Header() {
               </button>
             </div>
           )}
-          <button onClick={handleToogle}>
+          <button className="flex md:hidden" onClick={handleToogle}>
             <img
               src="/hamburger-right.png"
               alt=""
-              className="w-6 h-6 md:hidden "
+              className="w-6 h-6"
             />
           </button>
         </nav>
