@@ -1,10 +1,13 @@
 // import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import FilterMovie from "./FilterMovie";
-import FormSubscribe from "./FormSubscribe";
+import FilterMovie from "../components/FilterMovie";
+import FormSubscribe from "../components/FormSubscribe";
 import { Link } from "react-router";
 import { useEffect } from "react";
-import { getMovieGenresThunk, getMoviesThunk} from "../redux/slices/fetchMovie.slice";
+import {
+  getMovieGenresThunk,
+  getMoviesThunk,
+} from "../redux/slices/fetchMovie.slice";
 
 export default function HomeAllMovies() {
   const dispatch = useDispatch();
@@ -37,27 +40,39 @@ export default function HomeAllMovies() {
         <div className="grid grid-cols-4 gap-4">
           {movies.slice(0, 12).map((item, index) => {
             return (
-              <Link to={`/detail/${item.id}`}>
-                <figure key={index} className="min-w-[265px] shrink-0">
+              <figure key={index} className="min-w-[265px] shrink-0">
+                <div className="relative group h-fit w-fit">
                   <img
                     src={`https://image.tmdb.org/t/p/w500${item.image}`}
                     className="w-[265px]"
                   />
-                  <h2 className="mt-2 text-sm wrap-break-word max-w-[200px]">
-                    {item.title}
-                  </h2>
-                  <section className="flex gap-3">
-                    {item.genreId.slice(0, 2).map((id) => {
-                      const genre = genres.find((g) => g.id === id);
-                      return (
-                        <p key={id} className="border">
-                          {genre?.name}
-                        </p>
-                      );
-                    })}
-                  </section>
-                </figure>
-              </Link>
+                  <div className="flex flex-col gap-2 justify-center items-center opacity-0  group-hover:opacity-100 bg-black/50 absolute z-1 h-full w-full top-0">
+                    <Link to={`/detail/${item.id}`}>
+                      <button className="border rounded-md w-[188px] h-12 text-white border-white">
+                        detail
+                      </button>
+                    </Link>
+                    <Link to={`/order/${item.id}`}>
+                      <button className="border rounded-md w-[188px] h-12 text-white border-[#1D4ED8] bg-[#1D4ED8]">
+                        Buy Ticket
+                      </button>
+                    </Link>
+                  </div>
+                </div>
+                <h2 className="mt-2 line-clamp-1 text-start text-bold text-[24px] wrap-break-word max-w-[200px]">
+                  {item.title}
+                </h2>
+                <section className="flex gap-3 my-2">
+                  {item.genreId.slice(0, 2).map((id) => {
+                    const genre = genres.find((g) => g.id === id);
+                    return (
+                      <p key={id} className="p-1 bg-gray-200 px-3 text-gray-400 rounded-r-full rounded-l-full">
+                        {genre?.name}
+                      </p>
+                    );
+                  })}
+                </section>
+              </figure>
             );
           })}
         </div>

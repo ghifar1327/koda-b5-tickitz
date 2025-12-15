@@ -1,4 +1,4 @@
-import FormSubscribe from "./FormSubscribe";
+import FormSubscribe from "../components/FormSubscribe";
 import { Link } from "react-router";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,12 +6,10 @@ import {
   getMovieGenresThunk,
   getMoviesThunk,
 } from "../redux/slices/fetchMovie.slice";
-import PartialSlideMovies1 from "./PartialSlideMovies1";
-import PartialSlideMovies2 from "./PartialSlideMovies2";
-import PartialSlideMoviesMobile1 from "./mobile/PartialSlideMoviesMobile1";
-import PartialSlideMoviesMobile2 from "./mobile/PartialSlideMoviesMobile2";
+import PartialSlideMovies1 from "../components/PartialSlideMovies1";
+import PartialSlideMovies2 from "../components/PartialSlideMovies2";
 
-export default function HomePageComponent() {
+export default function HomePage() {
   const dispatch = useDispatch();
   const getMovies = useSelector((state) => state.movies);
   const movies = getMovies.movies;
@@ -92,7 +90,7 @@ export default function HomePageComponent() {
           </p>
         </article>
         <PartialSlideMovies1 movies={movies} genres={genres} />
-        <PartialSlideMoviesMobile1 movies={movies} genres={genres} />
+        {/* <PartialSlideMoviesMobile1 movies={movies} genres={genres} /> */}
         <div>
           <Link
             to="/movie"
@@ -105,7 +103,7 @@ export default function HomePageComponent() {
         <p className="mt-[62px] md:px-[180px] text-[#1D4ED8] text-[18px] font-bold">
           UPCOMING MOVIES
         </p>
-        <PartialSlideMoviesMobile2 movies={movies} genres={genres} />
+        {/* <PartialSlideMoviesMobile2 movies={movies} genres={genres} /> */}
         <PartialSlideMovies2 movies={movies} genres={genres} />
         <FormSubscribe />
       </main>

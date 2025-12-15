@@ -17,7 +17,7 @@ export default function OrderTicket() {
     let subTotal = 0;
     selectedSeats.forEach((seat) => {
       if (seat === loveSeat) {
-        subTotal += 20;
+        subTotal += 40;
       } else {
         subTotal += reguler;
       }
