@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import{ useState } from "react";
+import { Link } from "react-router";
 
-export default function BookTicketInput() {
+export default function BookTicketInput({ id }) {
   const [selected, setSelected] = useState("");
+  
 
   const options = [
     { id: "ebv1", label: "mask-[url('/ebv.id.svg')]", color: "bg-black" },
@@ -112,14 +114,24 @@ export default function BookTicketInput() {
       </div>
       <section className="flex flex-col items-center gap-[52px]">
         <div className="flex justify-center gap-2">
-        <button className="border border-[#1D4ED8] rounded-md p-2 px-4 text-white bg-[#1D4ED8]">1</button>
-        <button className="border border-[#DEDEDE] rounded-md p-2 px-4">2</button>
-        <button className="border border-[#DEDEDE] rounded-md p-2 px-4">3</button>
-        <button className="border border-[#DEDEDE] rounded-md p-2 px-4">4</button>
+          <button className="border border-[#1D4ED8] rounded-md p-2 px-4 text-white bg-[#1D4ED8]">
+            1
+          </button>
+          <button className="border border-[#DEDEDE] rounded-md p-2 px-4">
+            2
+          </button>
+          <button className="border border-[#DEDEDE] rounded-md p-2 px-4">
+            3
+          </button>
+          <button className="border border-[#DEDEDE] rounded-md p-2 px-4">
+            4
+          </button>
         </div>
-        <button className="bg-[#1D4ED8] w-[188px] p-[19px] rounded-md text-white">
+        <Link to={`/order/${id}`}>
+          <button className="bg-[#1D4ED8] w-[188px] p-[19px] rounded-md text-white">
             Book Now
           </button>
+        </Link>
       </section>
     </div>
   );

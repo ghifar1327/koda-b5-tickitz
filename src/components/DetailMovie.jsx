@@ -9,7 +9,7 @@ export default function DetailMovie() {
   const [director, setDirector] = useState("");
   const [loading, setLoading] = useState(true);
   const [cast, setCast] = useState([]);
-
+  console.log(id)
   useEffect(() => {
     async function fetchDetail() {
       try {
@@ -27,8 +27,8 @@ export default function DetailMovie() {
           }`
         );
         const creditData = await cre.json();
-        const dir = creditData.crew.find((c) => c.job === "Director");
-        console.log(dir);
+        const dir = creditData.crew.find((credits) => credits.job === "Director");
+        // console.log(dir);
         setDirector(dir ? dir.name : "Unknown");
         setCast(creditData.cast.slice(0, 5));
 
@@ -37,16 +37,22 @@ export default function DetailMovie() {
         console.log(e);
       }
     }
-
     fetchDetail();
   }, [id]);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading)
+    return (
+      <>
+        <div className="absolute inset-0 transition-all duration-500 ease-in-out z-100 w-full h-[1024px] backdrop-blur-sm flex justify-center items-center">
+          <div className="loader"></div>
+        </div>
+      </>
+    );
 
   return (
     <>
       <div
-        className="bg-cover bg-center w-full h-[461px]"
+        className={` bg-cover bg-center w-full h-[461px]`}
         style={{
           backgroundImage: `url(https://image.tmdb.org/t/p/w500${movie.backdrop_path})`,
         }}
@@ -88,9 +94,12 @@ export default function DetailMovie() {
                 </div>
                 <div>
                   <p>Cast</p>
-                  <div className="">
-                    {cast.slice(0,3).map((actor) => actor.name).join(", ")}
-                  </div>
+                    <p className="">
+                    {cast
+                      .slice(0, 3)
+                      .map((actor) => actor.name)
+                      .join(", ")}
+                    </p>
                 </div>
               </div>
             </section>
@@ -101,7 +110,7 @@ export default function DetailMovie() {
           <p>{movie.overview}</p>
         </section>
       </article>
-        <BookTicketInput/>
+      <BookTicketInput id={id}/>
     </>
   );
 }

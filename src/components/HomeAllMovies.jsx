@@ -1,48 +1,19 @@
-import { useEffect, useState } from "react";
-import FilterMovie from "../components/FilterMovie";
-import FormSubscribe from "../components/FormSubscribe";
+// import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import FilterMovie from "./FilterMovie";
+import FormSubscribe from "./FormSubscribe";
 import { Link } from "react-router";
+import { useEffect } from "react";
+import { getMovieGenresThunk, getMoviesThunk} from "../redux/slices/fetchMovie.slice";
 
-export default function HomeViewAllMovies() {
-  const [movies, setMovies] = useState([]);
-  const [genres, setGenres] = useState([]);
-
+export default function HomeAllMovies() {
+  const dispatch = useDispatch();
+  const getMovies = useSelector((state) => state.movies);
+  const movies = getMovies.movies;
+  const genres = getMovies.genres;
   useEffect(() => {
-    (async () => {
-      const response = await fetch(
-        `https://api.themoviedb.org/3/movie/popular?api_key=${import.meta.env.VITE_API_KEY}`
-      );
-      try {
-        if (!response.ok) throw new Error(response.status, response.statusText);
-        const data = await response.json();
-        // console.log(data.results);
-        const arrMovie = await data.results.map((item) => {
-          return {
-            id: item.id,
-            title: item.title,
-            image: item.poster_path,
-            decription: item.overview,
-            genreId: item.genre_ids,
-          };
-        });
-        console.log(arrMovie);
-
-        setMovies(arrMovie);
-      } catch (error) {
-        console.log(error);
-      }
-    })();
-  }, []);
-
-  useEffect(() => {
-    (async () => {
-      const res = await fetch(
-        `https://api.themoviedb.org/3/genre/movie/list?api_key=${import.meta.env.VITE_API_KEY}`
-      );
-      const data = await res.json();
-      setGenres(data.genres);
-      console.log(data);
-    })();
+    dispatch(getMoviesThunk());
+    dispatch(getMovieGenresThunk());
   }, []);
   return (
     <>
@@ -67,9 +38,11 @@ export default function HomeViewAllMovies() {
           {movies.slice(0, 12).map((item, index) => {
             return (
               <Link to={`/detail/${item.id}`}>
-                <figure ley={index} className="min-w-[265px] shrink-0">
+                <figure key={index} className="min-w-[265px] shrink-0">
                   <img
-                    src={`https://image.tmdb.org/t/p/w500${item.image}`}className="w-[265px]"/>
+                    src={`https://image.tmdb.org/t/p/w500${item.image}`}
+                    className="w-[265px]"
+                  />
                   <h2 className="mt-2 text-sm wrap-break-word max-w-[200px]">
                     {item.title}
                   </h2>
@@ -78,7 +51,7 @@ export default function HomeViewAllMovies() {
                       const genre = genres.find((g) => g.id === id);
                       return (
                         <p key={id} className="border">
-                          {genre?.name}{" "}
+                          {genre?.name}
                         </p>
                       );
                     })}

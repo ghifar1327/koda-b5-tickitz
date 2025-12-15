@@ -6,7 +6,10 @@ import InputLogin from "./components/InputLogin";
 import InputRegister from "./components/InputRegister";
 import DetailMovie from "./components/DetailMovie";
 import HomePageComponent from "./components/HomePageComponent";
-import HomeViewAllMovies from "./components/HomeViewAllMovies";
+import HomeAllMovies from "./components/HomeAllMovies";
+import OrderLayout from "./layouts/OrderLayout";
+import OrderTicket from "./components/OrderTicket";
+import NotFound from "./pages/NotFound";
 
 export default function Router() {
   return (
@@ -14,13 +17,17 @@ export default function Router() {
       <Routes>
         <Route path="/" element={<MainLayout />}>
           <Route index element={<HomePageComponent />} />
-          <Route path="movie" element={<HomeViewAllMovies />} />
+          <Route path="movie" element={<HomeAllMovies />} />
           <Route path="detail/:id" element={<DetailMovie />} />
         </Route>
         <Route element={<AuthLayout />}>
           <Route path="login" element={<InputLogin />} />
           <Route path="register" element={<InputRegister />} />
         </Route>
+        <Route element={<OrderLayout />}>
+          <Route path="order/:id" element={<OrderTicket />} />
+        </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );

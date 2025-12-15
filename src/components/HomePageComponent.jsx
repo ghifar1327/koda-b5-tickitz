@@ -1,25 +1,26 @@
-import PartialSlideMovie from "./PartialSlideMovie";
 import FormSubscribe from "./FormSubscribe";
 import { Link } from "react-router";
-import UpComingMovie from "./UpComingMovie";
-import { useState } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getMovieGenresThunk,
+  getMoviesThunk,
+} from "../redux/slices/fetchMovie.slice";
+import PartialSlideMovies1 from "./PartialSlideMovies1";
+import PartialSlideMovies2 from "./PartialSlideMovies2";
+import PartialSlideMoviesMobile1 from "./mobile/PartialSlideMoviesMobile1";
+import PartialSlideMoviesMobile2 from "./mobile/PartialSlideMoviesMobile2";
 
 export default function HomePageComponent() {
-  const [startSlice, SetStartSlice] = useState(0);
-  const [endSlice, setEndSlice] = useState(4);
+  const dispatch = useDispatch();
+  const getMovies = useSelector((state) => state.movies);
+  const movies = getMovies.movies;
+  const genres = getMovies.genres;
+  useEffect(() => {
+    dispatch(getMoviesThunk());
+    dispatch(getMovieGenresThunk());
+  }, []);
 
-  function arrowLeft() {
-    if (startSlice > 0) {
-      SetStartSlice(startSlice - 4);
-      setEndSlice(endSlice - 4);
-    }
-  }
-  function arrorRight() {
-    if (endSlice < 20) {
-      SetStartSlice(startSlice + 4);
-      setEndSlice(endSlice + 4);
-    }
-  }
   return (
     <>
       <main className="mt-[49px] text-center md:text-start  md:mt-10">
@@ -90,40 +91,22 @@ export default function HomePageComponent() {
             Exciting Movies That Should Be Watched Today
           </p>
         </article>
-        <PartialSlideMovie />
-        <div className="hidden md:flex justify-center items-center gap-3 text-[#1D4ED8] text-[18px] mt-[38px]">
-          <p>
-            <Link to="/movie">View All</Link>
-          </p>
-          <img src="/arrow-up.png" alt="" />
+        <PartialSlideMovies1 movies={movies} genres={genres} />
+        <PartialSlideMoviesMobile1 movies={movies} genres={genres} />
+        <div>
+          <Link
+            to="/movie"
+            className="hidden md:flex justify-center items-center gap-3 text-[#1D4ED8] text-[18px] mt-[38px]"
+          >
+            <p>View All</p>
+            <img src="/arrow-up.png" alt="" />
+          </Link>
         </div>
         <p className="mt-[62px] md:px-[180px] text-[#1D4ED8] text-[18px] font-bold">
           UPCOMING MOVIES
         </p>
-        <section className="px-6 gap-4 md:px-[180px] hiden md:flex justify-between items-center">
-          <div>
-            <p className="text-[32px]">Exiting Movie Comming Soon</p>
-          </div>
-          <div className="hidden md:flex gap-[9px]">
-            <button
-              onClick={arrowLeft}
-              className="w-[69px] h-[69px] bg-[#A0A3BD] rounded-[50%] flex justify-center items-center"
-            >
-              <img src="/arrow-white.png" alt="" className="w-6 h-6" />
-            </button>
-            <button
-              onClick={arrorRight}
-              className="w-[69px] h-[69px]  rounded-[50%] bg-[#1D4ED8] flex justify-center items-center"
-            >
-              <img
-                src="/arrow-white.png"
-                alt=""
-                className="w-6 h-6 rotate-180"
-              />
-            </button>
-          </div>
-        </section>
-        <UpComingMovie startSlice={startSlice} endSlice={endSlice} />
+        <PartialSlideMoviesMobile2 movies={movies} genres={genres} />
+        <PartialSlideMovies2 movies={movies} genres={genres} />
         <FormSubscribe />
       </main>
     </>
