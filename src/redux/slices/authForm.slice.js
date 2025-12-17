@@ -12,18 +12,6 @@ export const loginThunk = createAsyncThunk(
   }
 );
 
-export const registerThunk = createAsyncThunk(
-  "auth/registerThunk",
-  async (payload, { rejectWithValue }) => {
-    try {
-      await new Promise((res) => setTimeout(res, 5000));
-      return payload;
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  }
-);
-
 export const logoutThunk = createAsyncThunk(
   "auth/logoutThunk",
   async (_, { rejectWithValue }) => {
@@ -41,12 +29,10 @@ const initialState = {
   token: null,
   fetchStatus: {
     login: { isLoading: false, isSuccess: false, isFailed: false },
-    register: { isLoading: false, isSuccess: false, isFailed: false },
     logout: { isLoading: false, isSuccess: false, isFailed: false },
   },
   error: {
     login: null,
-    register: null,
     logout: null,
   },
 };
@@ -74,24 +60,6 @@ const authSlice = createSlice({
         state.fetchStatus.login.isSuccess = false;
         state.fetchStatus.login.isFailed = true;
         state.error.login = action.payload;
-      })
-      .addCase(registerThunk.pending, (state) => {
-        state.fetchStatus.register.isLoading = true;
-        state.fetchStatus.register.isSuccess = false;
-        state.fetchStatus.register.isFailed = false;
-        state.error.register = null;
-      })
-      .addCase(registerThunk.fulfilled, (state, action) => {
-        state.fetchStatus.register.isLoading = false;
-        state.fetchStatus.register.isSuccess = true;
-        state.fetchStatus.register.isFailed = false;
-        state.user = action.payload;
-      })
-      .addCase(registerThunk.rejected, (state, action) => {
-        state.fetchStatus.register.isLoading = false;
-        state.fetchStatus.register.isSuccess = false;
-        state.fetchStatus.register.isFailed = true;
-        state.error.register = action.payload;
       })
       .addCase(logoutThunk.pending, (state) => {
         state.fetchStatus.logout.isLoading = true;
