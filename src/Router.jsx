@@ -1,4 +1,3 @@
-import React from "react";
 import { Route, Routes } from "react-router";
 import MainLayout from "./layouts/MainLayout";
 import AuthLayout from "./layouts/AuthLayout";
@@ -6,10 +5,10 @@ import InputLogin from "./components/InputLogin";
 import InputRegister from "./components/InputRegister";
 import DetailMovie from "./components/DetailMovie";
 import HomePageComponent from "./pages/HomePage";
-import HomeAllMovies from "./pages/HomeAllMovies";
-import OrderLayout from "./layouts/OrderLayout";
+
 import OrderTicket from "./components/OrderTicket";
 import NotFound from "./pages/NotFound";
+import Movies from "./pages/Movies";
 
 export default function Router() {
   return (
@@ -17,7 +16,7 @@ export default function Router() {
       <Routes>
         <Route path="/" element={<MainLayout />}>
           <Route index element={<HomePageComponent />} />
-          <Route path="movie" element={<HomeAllMovies />} />
+          <Route path="movie" element={<Movies />} />
           <Route path="detail/:id" element={<DetailMovie />} />
           <Route path="order/:id" element={<OrderTicket />} />
         </Route>

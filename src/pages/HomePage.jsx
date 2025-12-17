@@ -1,13 +1,13 @@
-import FormSubscribe from "../components/FormSubscribe";
-import { Link } from "react-router";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import FormSubscribe from '../components/FormSubscribe';
+import { Link } from 'react-router';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   getMovieGenresThunk,
   getMoviesThunk,
-} from "../redux/slices/fetchMovie.slice";
-import PartialSlideMovies1 from "../components/PartialSlideMovies1";
-import PartialSlideMovies2 from "../components/PartialSlideMovies2";
+} from '../redux/slices/fetchMovie.slice';
+import PartialSlideMovies1 from '../components/PartialSlideMovies1';
+import PartialSlideMovies2 from '../components/PartialSlideMovies2';
 
 export default function HomePage() {
   const dispatch = useDispatch();
@@ -21,13 +21,13 @@ export default function HomePage() {
 
   return (
     <>
-      <main className="mt-[49px] text-center md:text-start  md:mt-10">
-        <hero className="gap-[19px] flex flex-col md:flex-row md:justify-between px-6 md:px-[180px]">
-          <section className="flex flex-col gap-4 justify-center md:max-w-[568px]">
-            <p className="text-[#1D4ED8] text-[25px]">
+      <main className="mt-[49px] text-center md:mt-10 md:text-start">
+        <hero className="flex flex-col gap-[19px] px-6 md:flex-row md:justify-between md:px-[180px]">
+          <section className="flex flex-col justify-center gap-4 md:max-w-[568px]">
+            <p className="text-[25px] text-primary">
               MOVIE TICKET PURCHASES #1 IN INDONESIA
             </p>
-            <p className=" text-[40px] font-medium md:text-[48px] ">
+            <p className="text-[40px] font-medium md:text-[48px]">
               Experience the Magic of Cinema: Book Your Tickets Today
             </p>
             <p className="text-[20px]">
@@ -43,15 +43,15 @@ export default function HomePage() {
         </hero>
         <article className="px-6 md:px-[180px]">
           <section className="mt-[70px]">
-            <p className="text-[#1D4ED8] font-bold">WHY CHOOSE US</p>
+            <p className="font-bold text-primary">WHY CHOOSE US</p>
             <div className="max-w-[438px]">
               <p className="text-[32px]">
                 Unleashing the Ultimate Movie Experience
               </p>
             </div>
           </section>
-          <section className="flex flex-col md:flex-row gap-[33px] mt-[33px]">
-            <div className=" flex flex-col gap-[19px] items-center md:items-start">
+          <section className="mt-[33px] flex flex-col gap-[33px] md:flex-row">
+            <div className="flex flex-col items-center gap-[19px] md:items-start">
               <img src="/Group 233.png" alt="" />
               <p>Guaranteed</p>
               <p>
@@ -83,9 +83,9 @@ export default function HomePage() {
             </div>
           </section>
         </article>
-        <article className="text-center flex flex-col gep-[14px] mt-[33.5px]">
-          <p className="text-[#1D4ED8] text-[18px] font-bold">MOVIES</p>
-          <p className="text-[38px] ">
+        <article className="gep-[14px] mt-[33.5px] flex flex-col text-center">
+          <p className="text-[18px] font-bold text-primary">MOVIES</p>
+          <p className="text-[38px]">
             Exciting Movies That Should Be Watched Today
           </p>
         </article>
@@ -94,13 +94,13 @@ export default function HomePage() {
         <div>
           <Link
             to="/movie"
-            className="hidden md:flex justify-center items-center gap-3 text-[#1D4ED8] text-[18px] mt-[38px]"
+            className="mt-[38px] hidden items-center justify-center gap-3 text-[18px] text-primary md:flex"
           >
             <p>View All</p>
             <img src="/arrow-up.png" alt="" />
           </Link>
         </div>
-        <p className="mt-[62px] md:px-[180px] text-[#1D4ED8] text-[18px] font-bold">
+        <p className="mt-[62px] text-[18px] font-bold text-primary md:px-[180px]">
           UPCOMING MOVIES
         </p>
         {/* <PartialSlideMoviesMobile2 movies={movies} genres={genres} /> */}

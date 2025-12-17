@@ -1,49 +1,50 @@
-import React from "react";
+import React from 'react';
 
 export default function Footer() {
   return (
-    <footer className="px-6 pt-16 md:px-[180px] md:pt-[109px] pb-[47.7px]">
-      <article className="flex flex-col gap-[50px] md:flex-row md:justify-between mb-[47.7px]">
+    <footer className="px-6 pt-16 pb-[47.7px] md:px-[180px] md:pt-[109px]">
+      <article className="mb-[47.7px] flex flex-col gap-[50px] md:flex-row md:justify-between">
         <div>
-          <img src="/Tickitz 1.png" alt="" className="mb-[12px]" />
-          <p className="text-[#6E7191] text-[14px]">
+          <div className='mask-[url(/Tickitz.svg)]  mask-no-repeat bg-primary h-10 w-20] mb-[12px]'></div>
+          {/* <img src="/Tickitz1.png" alt="" className="mb-[12px]" /> */}
+          <p className="text-[14px] text-[#6E7191]">
             Stop waiting in line. Buy tickets
           </p>
-          <p className="text-[#6E7191] text-[14px]">
+          <p className="text-[14px] text-[#6E7191]">
             conveniently, watch movies quietly.
           </p>
         </div>
         <div>
-          <p className="text-[16px] font-bold mb-4">Explore</p>
+          <p className="mb-4 text-[16px] font-bold">Explore</p>
           <div>
-            <p className="text-[#6E7191] text-[14px]">Cinemas</p>
-            <p className="text-[#6E7191] text-[14px]">Movies List</p>
-            <p className="text-[#6E7191] text-[14px]">My Ticket</p>
-            <p className="text-[#6E7191] text-[14px]">Notification</p>
+            <p className="text-[14px] text-[#6E7191]">Cinemas</p>
+            <p className="text-[14px] text-[#6E7191]">Movies List</p>
+            <p className="text-[14px] text-[#6E7191]">My Ticket</p>
+            <p className="text-[14px] text-[#6E7191]">Notification</p>
           </div>
         </div>
         <div className="text-[16px] font-bold">
-          <p className=" mb-4 ">Our Sponsor</p>
-          <div className="flex justify-between items-center md:flex-col md:items-start md:gap-[23.7px]">
+          <p className="mb-4">Our Sponsor</p>
+          <div className="flex items-center justify-between md:flex-col md:items-start md:gap-[23.7px]">
             <img
               src="/ebv.id 2.png"
               alt=""
-              className="w-[81px] h-[30px] md:w-[122px] md:h-[45.5px]"
+              className="h-[30px] w-[81px] md:h-[45.5px] md:w-[122px]"
             />
             <img
               src="/CineOne21 2.png"
               alt=""
-              className="w-[106px] h-[17px] md:w-[174px] md:h-[27.7px]"
+              className="h-[17px] w-[106px] md:h-[27.7px] md:w-[174px]"
             />
             <img
               src="/hiflix 2.png"
               alt=""
-              className="w-[76.24px] h-[23.78px] md:w-20 md:h-[25.7px]"
+              className="h-[23.78px] w-[76.24px] md:h-[25.7px] md:w-20"
             />
           </div>
         </div>
         <div>
-          <p className="text-[16px] font-bold mb-4">Follow Us</p>
+          <p className="mb-4 text-[16px] font-bold">Follow Us</p>
           <div className="flex gap-8 md:flex-col">
             <div className="flex gap-4">
               <img src="/facebook.png" alt="" />
