@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginThunk } from '../redux/slices/authForm.slice';
 import { useNavigate } from 'react-router';
+import { useAuthValidation } from '../hooks/useAuthValidation';
+import { useUsers } from '../hooks/useUsers';
+import { Bounce, ToastContainer, toast } from 'react-toastify';
 
 export default function InputLogin() {
   const [toogle, setToogle] = useState(true);
@@ -20,15 +23,52 @@ export default function InputLogin() {
     email: '',
     password: '',
   });
+
+  // hooks custom
+  const { errors, isValid } = useAuthValidation(form.email, form.password);
+  const [users] = useUsers();
+  console.log(users);
   function handleSubmit(e) {
     e.preventDefault();
+    if (!isValid) return;
     const userData = {
       email: form.email,
       password: form.password,
     };
-    dispatch(loginThunk(userData.email));
+    const isExist = users.find(
+      (user) =>
+        user.email === userData.email && user.password === userData.password,
+    );
+    if (!isExist) {
+      // toast.error('🦄 Wow so easy!', {
+      //   position: 'top-right',
+      //   autoClose: 5000,
+      //   hideProgressBar: false,
+      //   closeOnClick: false,
+      //   pauseOnHover: true,
+      //   draggable: true,
+      //   progress: undefined,
+      //   theme: 'light',
+      //   transition: Bounce,
+      // });
+      toast.error('🦄 Wow so easy!', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored',
+        transition: Bounce,
+      });
+
+      return;
+    }
+    dispatch(loginThunk(userData));
     setForm({ email: '', password: '' });
   }
+
   function hendleChange(e) {
     setForm((form) => ({
       ...form,
@@ -38,6 +78,7 @@ export default function InputLogin() {
   function toogleEye() {
     setToogle((prevToogle) => !prevToogle);
   }
+
   return (
     <>
       <form
@@ -60,13 +101,19 @@ export default function InputLogin() {
               name="email"
               value={form.email}
               onChange={hendleChange}
-              className="w-full rounded-md border border-gray-300 p-3 text-base focus:outline-primary"
+              className={`w-full rounded-md border p-3 text-base ${errors.email ? 'border-red-500' : 'border-gray-300'}`}
             />
+            {errors.email && (
+              <p className="text-sm text-gray-600">{errors.email}</p>
+            )}
           </label>
 
           <label className="flex flex-col gap-1">
             <p className="font-medium">Password</p>
-            <div className="flex justify-between rounded-md border border-gray-300 focus-within:border-primary">
+
+            <div
+              className={`flex justify-between rounded-md border ${errors.password ? 'border-red-500' : 'border-gray-300'} focus-within:border-primary`}
+            >
               <input
                 type={toogle ? 'password' : 'text'}
                 name="password"
@@ -74,11 +121,8 @@ export default function InputLogin() {
                 onChange={hendleChange}
                 className="w-[85%] p-3 text-base outline-none"
               />
-              <button
-                type="button"
-                onClick={toogleEye}
-                className="bg-amber-200items-center p-3"
-              >
+
+              <button type="button" onClick={toogleEye} className="p-3">
                 <img
                   src={toogle ? '/eyebrow.png' : '/eye.png'}
                   alt=""
@@ -86,18 +130,24 @@ export default function InputLogin() {
                 />
               </button>
             </div>
+
+            {errors.password && (
+              <p className="text-sm text-gray-600">{errors.password}</p>
+            )}
           </label>
           <div className="flex justify-end">
-            <button type="button" className="text-sm text-primary">
+            <button type="button" className="text-primary text-sm">
               Forget your password?
             </button>
           </div>
           <button
             type="submit"
-            className="w-full rounded-md bg-primary p-3 text-white transition"
+            disabled={!isValid}
+            className={`w-full rounded-md p-3 text-white transition ${isValid ? 'bg-primary' : 'cursor-not-allowed bg-gray-400'}`}
           >
             Login
           </button>
+          <div></div>
           <div className="flex items-center justify-between">
             <div className="h-px w-[35%] bg-[#AAAAAA]"></div>
             <p className="text-[#AAAAAA]">Or</p>
@@ -113,6 +163,7 @@ export default function InputLogin() {
           </div>
         </div>
       </form>
+      <ToastContainer />
     </>
   );
 }

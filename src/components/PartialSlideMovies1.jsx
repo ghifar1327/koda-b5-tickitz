@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 export default function PartialSlideMovies1({ movies, genres }) {
   return (
     <>
-      <article className="hide-scrollbar mt-7 flex justify-between gap-[18px] overflow-x-scroll px-6 md:px-[180px]">
+      <article className="no-scrollbar mt-7 flex justify-between gap-[18px] overflow-x-scroll px-6 md:px-[180px]">
         {movies.slice(0, 4).map((item, index) => {
           return (
             <figure key={index} className="min-w-[265px] shrink-0">

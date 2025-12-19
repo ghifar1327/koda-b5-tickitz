@@ -110,109 +110,107 @@ export default function ChooseSeat({ setSelectedSeats, selectedSeats }) {
   return (
     <>
       <h1 className="mt-[37px] text-[30px] font-bold">Choose Seat</h1>
-      <article className="hidden md:flex flex-col">
-
-      <h2 className="mt-[37px] text-center text-[#4E4B66]">Screen</h2>
-      <form action="" className="mt-[30px] flex justify-between">
-        <div className="flex">
-          <div className="mr-2 flex flex-col gap-2 text-[#4E4B66]">
-            <p className="flex h-8 w-8 items-center justify-center">A</p>
-            <p className="flex h-8 w-8 items-center justify-center">B</p>
-            <p className="flex h-8 w-8 items-center justify-center">C</p>
-            <p className="flex h-8 w-8 items-center justify-center">D</p>
-            <p className="flex h-8 w-8 items-center justify-center">E</p>
-            <p className="flex h-8 w-8 items-center justify-center">F</p>
-            <p className="flex h-8 w-8 items-center justify-center">G</p>
-          </div>
-          <div className="grid w-fit grid-cols-7 gap-2">
-            {seatLeft.map((item) => (
-              <label key={item} htmlFor={item} className="cursor-pointer">
-                <input
-                  type="checkbox"
-                  id={item}
-                  name={item}
-                  checked={selectedSeats.includes(item)}
-                  onChange={() => handleSeatChange(item)}
-                  className="peer hidden"
+      <article className="hidden flex-col md:flex">
+        <h2 className="mt-[37px] text-center text-[#4E4B66]">Screen</h2>
+        <form action="" className="mt-[30px] flex justify-between">
+          <div className="flex">
+            <div className="mr-2 flex flex-col gap-2 text-[#4E4B66]">
+              <p className="flex h-8 w-8 items-center justify-center">A</p>
+              <p className="flex h-8 w-8 items-center justify-center">B</p>
+              <p className="flex h-8 w-8 items-center justify-center">C</p>
+              <p className="flex h-8 w-8 items-center justify-center">D</p>
+              <p className="flex h-8 w-8 items-center justify-center">E</p>
+              <p className="flex h-8 w-8 items-center justify-center">F</p>
+              <p className="flex h-8 w-8 items-center justify-center">G</p>
+            </div>
+            <div className="grid w-fit grid-cols-7 gap-2">
+              {seatLeft.map((item) => (
+                <label key={item} htmlFor={item} className="cursor-pointer">
+                  <input
+                    type="checkbox"
+                    id={item}
+                    name={item}
+                    checked={selectedSeats.includes(item)}
+                    onChange={() => handleSeatChange(item)}
+                    className="peer hidden"
                   />
-                <div className="h-8 w-8 rounded-md bg-[#D6D8E7] peer-checked:bg-primary peer-checked:text-white"></div>
-              </label>
-            ))}
+                  <div className="peer-checked:bg-primary h-8 w-8 rounded-md bg-[#D6D8E7] peer-checked:text-white"></div>
+                </label>
+              ))}
+            </div>
           </div>
-        </div>
-        <div className="h-fif grid w-fit grid-cols-7 gap-2">
-          {seatRight.map((item) => {
-            return (
-              <label
-              key={item}
-              htmlFor={item}
-              className={`cursor-pointer ${
-                item == 'F10/F11' ? 'col-span-2' : ''
-              }`}
-              >
-                <input
-                  type="checkbox"
-                  id={item}
-                  name={item}
-                  checked={selectedSeats.includes(item)}
-                  onChange={() => handleSeatChange(item)}
-                  className="peer hidden"
+          <div className="h-fif grid w-fit grid-cols-7 gap-2">
+            {seatRight.map((item) => {
+              return (
+                <label
+                  key={item}
+                  htmlFor={item}
+                  className={`cursor-pointer ${
+                    item == 'F10/F11' ? 'col-span-2' : ''
+                  }`}
+                >
+                  <input
+                    type="checkbox"
+                    id={item}
+                    name={item}
+                    checked={selectedSeats.includes(item)}
+                    onChange={() => handleSeatChange(item)}
+                    className="peer hidden"
                   />
-                <div
-                  className={`${
-                    item == 'F10/F11'
-                    ? ' w-full bg-[#F589D7]'
-                    : 'w-8 bg-[#D6D8E7]'
-                  } h-8 rounded-md peer-checked:bg-primary peer-checked:text-white`}
+                  <div
+                    className={`${
+                      item == 'F10/F11'
+                        ? 'w-full bg-[#F589D7]'
+                        : 'w-8 bg-[#D6D8E7]'
+                    } peer-checked:bg-primary h-8 rounded-md peer-checked:text-white`}
                   ></div>
-              </label>
-            );
-          })}
-        </div>
-      </form>
-      <section className="flex justify-between">
-        <div className="flex justify-between gap-2">
-          <p className="flex h-8 w-8 items-center justify-center"></p>
-          <p className="flex h-8 w-8 items-center justify-center">1</p>
-          <p className="flex h-8 w-8 items-center justify-center">2</p>
-          <p className="flex h-8 w-8 items-center justify-center">3</p>
-          <p className="flex h-8 w-8 items-center justify-center">4</p>
-          <p className="flex h-8 w-8 items-center justify-center">5</p>
-          <p className="flex h-8 w-8 items-center justify-center">6</p>
-          <p className="flex h-8 w-8 items-center justify-center">7</p>
-        </div>
-        <div className="flex justify-between gap-2">
-          <p className="flex h-8 w-8 items-center justify-center"></p>
-          <p className="flex h-8 w-8 items-center justify-center">8</p>
-          <p className="flex h-8 w-8 items-center justify-center">9</p>
-          <p className="flex h-8 w-8 items-center justify-center">10</p>
-          <p className="flex h-8 w-8 items-center justify-center">11</p>
-          <p className="flex h-8 w-8 items-center justify-center">12</p>
-          <p className="flex h-8 w-8 items-center justify-center">13</p>
-          <p className="flex h-8 w-8 items-center justify-center">14</p>
-        </div>
-      </section>
-      <h1 className="mt-8 text-[18px]">Seating Key</h1>
-      <section className="mt-8 flex justify-around">
-        <div className="flex items-center gap-4 text-[#4E4B66]">
-          <div className="h-8 w-8 rounded-md bg-[#D6D8E7]"></div>
-          <p>Availabe</p>
-        </div>
-        <div className="flex items-center gap-4 text-[#4E4B66]">
-          <div className="h-8 w-8 rounded-md bg-primary"></div>
-          <p>Selected</p>
-        </div>
-        <div className="flex items-center gap-4 text-[#4E4B66]">
-          <div className="h-8 w-8 rounded-md bg-[#F589D7]"></div>
-          <p>Love Nest</p>
-        </div>
-        <div className="flex items-center gap-4 text-[#4E4B66]">
-          <div className="h-8 w-8 rounded-md bg-[#6E7191]"></div>
-          <p>Sold</p>
-        </div>
-      </section>
-      <p className="mt-4">Selected Seats:</p>
-          </article>
+                </label>
+              );
+            })}
+          </div>
+        </form>
+        <section className="flex justify-between">
+          <div className="flex justify-between gap-2">
+            <p className="flex h-8 w-8 items-center justify-center"></p>
+            <p className="flex h-8 w-8 items-center justify-center">1</p>
+            <p className="flex h-8 w-8 items-center justify-center">2</p>
+            <p className="flex h-8 w-8 items-center justify-center">3</p>
+            <p className="flex h-8 w-8 items-center justify-center">4</p>
+            <p className="flex h-8 w-8 items-center justify-center">5</p>
+            <p className="flex h-8 w-8 items-center justify-center">6</p>
+            <p className="flex h-8 w-8 items-center justify-center">7</p>
+          </div>
+          <div className="flex justify-between gap-2">
+            <p className="flex h-8 w-8 items-center justify-center"></p>
+            <p className="flex h-8 w-8 items-center justify-center">8</p>
+            <p className="flex h-8 w-8 items-center justify-center">9</p>
+            <p className="flex h-8 w-8 items-center justify-center">10</p>
+            <p className="flex h-8 w-8 items-center justify-center">11</p>
+            <p className="flex h-8 w-8 items-center justify-center">12</p>
+            <p className="flex h-8 w-8 items-center justify-center">13</p>
+            <p className="flex h-8 w-8 items-center justify-center">14</p>
+          </div>
+        </section>
+        <h1 className="mt-8 text-[18px]">Seating Key</h1>
+        <section className="mt-8 flex justify-around">
+          <div className="flex items-center gap-4 text-[#4E4B66]">
+            <div className="h-8 w-8 rounded-md bg-[#D6D8E7]"></div>
+            <p>Availabe</p>
+          </div>
+          <div className="flex items-center gap-4 text-[#4E4B66]">
+            <div className="bg-primary h-8 w-8 rounded-md"></div>
+            <p>Selected</p>
+          </div>
+          <div className="flex items-center gap-4 text-[#4E4B66]">
+            <div className="h-8 w-8 rounded-md bg-[#F589D7]"></div>
+            <p>Love Nest</p>
+          </div>
+          <div className="flex items-center gap-4 text-[#4E4B66]">
+            <div className="h-8 w-8 rounded-md bg-[#6E7191]"></div>
+            <p>Sold</p>
+          </div>
+        </section>
+      </article>
     </>
   );
 }

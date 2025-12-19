@@ -105,14 +105,20 @@ export default function ChooseSeatMobile() {
 
   return (
     <>
-      <div className="h-1 w-full rounded-full bg-[#CF0F0F]"></div>
+      <p className="md:hidden mt-4">Selected Seats:</p>
+      <div className="h-1 w-full rounded-full bg-[#CF0F0F] md:hidden"></div>
       <article className="flex w-full justify-between md:hidden">
         <div className="flex gap-2">
           <div className="my-2 w-0.5 rounded-full bg-[#BBCB64]"></div>
           <div>
             <section className="mt-4 mb-2 grid w-fit grid-cols-7 gap-2">
               {seatLeft.map((item) => {
-                return <div id={item} className="h-4 w-4 bg-[#D6D8E7] rounded-sm"></div>;
+                return (
+                  <div
+                    id={item}
+                    className="h-4 w-4 rounded-sm bg-[#D6D8E7]"
+                  ></div>
+                );
               })}
             </section>
             <div className="h-1 w-full rounded-full bg-amber-700"></div>
@@ -136,7 +142,7 @@ export default function ChooseSeatMobile() {
           <div className="h-1 w-full rounded-full bg-amber-700"></div>
         </div>
       </article>
-      <article className=" md:hidden mt-4 flex flex-col gap-6">
+      <article className="mt-4 flex flex-col gap-6 md:hidden">
         <h2>Seating Key</h2>
         <section className="grid grid-cols-2 gap-4">
           <div className="flex items-center gap-2">
@@ -169,8 +175,12 @@ export default function ChooseSeatMobile() {
           <p>C4</p>
         </div>
         <div className="flex justify-between">
-          <div className='flex'>
-            <select name="" id="" className=" h-13 w-30 rounded-l-md bg-[#EFF0F6] px-5 outline-0">
+          <div className="flex">
+            <select
+              name=""
+              id=""
+              className="h-13 w-30 rounded-l-md bg-[#EFF0F6] px-5 outline-0"
+            >
               <option value="A">A</option>
               <option value="B">B</option>
               <option value="C">C</option>
@@ -179,40 +189,39 @@ export default function ChooseSeatMobile() {
               <option value="F">F</option>
               <option value="G">G</option>
             </select>
-            <div className='h-full w-5 bg-[#EFF0F6] rounded-r-md'>
-            </div>
+            <div className="h-full w-5 rounded-r-md bg-[#EFF0F6]"></div>
           </div>
-          <div className='flex'>
-          <select
-            name=""
-            id=""
-            className="h-13 w-30 rounded-l-md bg-[#EFF0F6] px-5 outline-0"
-          >
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option>
-            <option value="13">13</option>
-            <option value="14">14</option>
-            <option value="15">15</option>
-            <option value="16">16</option>
-            <option value="17">17</option>
-          </select>
-            <div className='h-full w-5 bg-[#EFF0F6] rounded-r-md'>
-            </div>
+          <div className="flex">
+            <select
+              name=""
+              id=""
+              className="h-13 w-30 rounded-l-md bg-[#EFF0F6] px-5 outline-0"
+            >
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+              <option value="13">13</option>
+              <option value="14">14</option>
+              <option value="15">15</option>
+              <option value="16">16</option>
+              <option value="17">17</option>
+            </select>
+            <div className="h-full w-5 rounded-r-md bg-[#EFF0F6]"></div>
           </div>
         </div>
-        <button className='w-full p-5 border-2 rounded-xl font-semibold text-primary border-primary'>Add new seat</button>
+        <button className="text-primary border-primary w-full rounded-xl border-2 p-5 font-semibold">
+          Add new seat
+        </button>
       </article>
-
     </>
   );
 }

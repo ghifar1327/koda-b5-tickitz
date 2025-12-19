@@ -33,13 +33,13 @@ export default function PartialSlideMovies2({ movies, genres }) {
           </button>
           <button
             onClick={arrorRight}
-            className="flex h-[69px] w-[69px] items-center justify-center rounded-[50%] bg-primary"
+            className="bg-primary flex h-[69px] w-[69px] items-center justify-center rounded-[50%]"
           >
             <img src="/arrow-white.png" alt="" className="h-6 w-6 rotate-180" />
           </button>
         </div>
       </section>
-      <article className="hide-scrollbar mt-12 flex justify-between overflow-x-scroll px-6 md:px-[180px]">
+      <article className="no-scrollbar mt-12 flex justify-between overflow-x-scroll px-6 md:px-[180px]">
         {movies.slice(startSlice, endSlice).map((item, index) => {
           return (
             <figure key={index} className="min-w-[265px] shrink-0">
@@ -55,7 +55,7 @@ export default function PartialSlideMovies2({ movies, genres }) {
                     </button>
                   </Link>
                   <Link to={`/order/${item.id}`}>
-                    <button className="h-12 w-[188px] rounded-md border border-primary bg-primary text-white">
+                    <button className="border-primary bg-primary h-12 w-[188px] rounded-md border text-white">
                       Buy Ticket
                     </button>
                   </Link>
@@ -64,7 +64,7 @@ export default function PartialSlideMovies2({ movies, genres }) {
               <h2 className="text-bold mt-2 line-clamp-1 max-w-[200px] text-start text-[24px]">
                 {item.title}
               </h2>
-              <h3 className="mb-2 text-start font-bold text-primary">
+              <h3 className="text-primary mb-2 text-start font-bold">
                 {format(item.release, 'MMMM yyyy')}
               </h3>
               <section className="flex gap-3">

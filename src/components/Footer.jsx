@@ -34,17 +34,17 @@ export default function Footer() {
             <img
               src="/CineOne21 2.png"
               alt=""
-              className="h-[17px] w-[106px] md:h-[27.7px] md:w-[174px]"
+              className="h-[17px] md:w-[174px]"
             />
             <img
               src="/hiflix 2.png"
               alt=""
-              className="h-[23.78px] w-[76.24px] md:h-[25.7px] md:w-20"
+              className="h-[23.78px] md:w-20"
             />
           </div>
         </div>
         <div>
-          <p className="mb-4 text-[16px] font-bold">Follow Us</p>
+          <p className="mb-4 font-bold">Follow Us</p>
           <div className="flex gap-8 md:flex-col">
             <div className="flex gap-4">
               <img src="/facebook.png" alt="" />

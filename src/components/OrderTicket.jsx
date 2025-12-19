@@ -52,7 +52,7 @@ export default function OrderTicket() {
           </div>
           <div className="h-px w-full border border-dashed border-[#A0A3BD]"></div>
           <div className="flex flex-col items-center gap-2.5">
-            <p className="flex h-12 w-12 items-center justify-center rounded-full bg-primary text-white">
+            <p className="bg-primary flex h-12 w-12 items-center justify-center rounded-full text-white">
               2
             </p>
             <p className="text-[#4E4B66]">Seat</p>
@@ -69,42 +69,42 @@ export default function OrderTicket() {
       <main className="grid grid-cols-1 gap-4 bg-[#A0A3BD33] pt-[31px] md:grid-cols-[2fr_1fr] md:px-[180px]">
         <div className="mb-[171px] bg-white p-[22px] py-[71px]">
           <article className="flex h-fit justify-between rounded-md border border-[#DEDEDE] p-[13px] px-6">
-            <section className="flex flex-col w-full gap-4 text-center md:flex md:text-start">
-              <div className='flex flex-col md:flex-row w-full items-center'>
-              <figure className="h-[174px] w-full md:h-[117px] md:w-[184px]">
-                <img
-                  src={`https://image.tmdb.org/t/p/w500${movie.image}`}
-                  alt={movie.title}
-                  className="h-full w-full object-cover object-top"
+            <section className="flex w-full flex-col gap-4 text-center md:flex md:text-start">
+              <div className="flex w-full flex-col items-center md:flex-row">
+                <figure className="h-[174px] w-full md:h-[117px] md:w-[184px]">
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500${movie.image}`}
+                    alt={movie.title}
+                    className="h-full w-full object-cover object-top"
                   />
-              </figure>
-              <div className="flex flex-col h-full justify-between">
-                <h1>{movie.title}</h1>
-                <section>
-                  <div className="flex justify-center gap-3 md:justify-start">
-                    {movie.genreId.slice(0, 2).map((id) => {
-                      const genre = genres.find((g) => g.id === id);
-                      return (
-                        <p key={id} className="">
-                          {genre?.name}
-                        </p>
-                      );
-                    })}
+                </figure>
+                <div className="flex h-full flex-col justify-between">
+                  <h1>{movie.title}</h1>
+                  <section>
+                    <div className="flex justify-center gap-3 md:justify-start">
+                      {movie.genreId.slice(0, 2).map((id) => {
+                        const genre = genres.find((g) => g.id === id);
+                        return (
+                          <p key={id} className="">
+                            {genre?.name}
+                          </p>
+                        );
+                      })}
+                    </div>
+                  </section>
+                  <section>
+                    <p>Reguler - 13:00 PM</p>
+                  </section>
+                  <div className="flex justify-center">
+                    <button className="text-primary w-[113px] rounded-full bg-[#1D4ED833] p-1 px-3 md:hidden">
+                      Change
+                    </button>
                   </div>
-                </section>
-                <section>
-                  <p>Reguler - 13:00 PM</p>
-                </section>
-                <div className='flex justify-center'>
-                  <button className="w-[113px] rounded-full bg-[#1D4ED833] p-1 px-3 text-primary md:hidden">
-                    Change
-                  </button>
                 </div>
-                        </div>
               </div>
             </section>
             <div className="flex items-end">
-              <button className="hidden rounded-md bg-primary p-1 px-3 text-white md:flex">
+              <button className="bg-primary hidden rounded-md p-1 px-3 text-white md:flex">
                 Change
               </button>
             </div>
@@ -113,9 +113,9 @@ export default function OrderTicket() {
             setSelectedSeats={setSelectedSeats}
             selectedSeats={selectedSeats}
           />
-          <ChooseSeatMobile/>
+          <ChooseSeatMobile />
         </div>
-        <div className='hidden md:flex flex-col'>
+        <div className="hidden flex-col md:flex">
           <article className="rounded-md bg-white">
             <section>
               <div className="flex flex-col gap-2 p-6 py-10">
@@ -152,11 +152,11 @@ export default function OrderTicket() {
               <hr />
               <div className="flex justify-between p-6">
                 <p className="font-bold">Total Payment</p>
-                <p className="font-bold text-primary">{`$ ${prieceForSeat}`}</p>
+                <p className="text-primary font-bold">{`$ ${prieceForSeat}`}</p>
               </div>
             </section>
           </article>
-          <button className="mt-10 w-full rounded-md bg-primary p-3 text-center text-white">
+          <button className="bg-primary mt-10 w-full rounded-md p-3 text-center text-white">
             Checkout Now
           </button>
         </div>

@@ -16,17 +16,13 @@ export default function Header() {
   function handleToogle() {
     setToogleHamburger((preveToogel) => !preveToogel);
   }
+  // const notify = () => {;};
+
   return (
     <>
       <header className="px-6 py-[26px] md:px-[180px]">
         <nav className="flex items-center justify-between">
-          <div className="bg-primary h-10 w-80 mask-[url(/Tickitz.svg)] mask-no-repeat">
-            {/* <img
-              src="/Tickitz 1.png"
-              alt=""
-              className="h-[37px] w-[93px] md:h-[51px] md:w-[130px]"
-            /> */}
-          </div>
+          <div className="bg-primary h-10 w-80 mask-[url(/Tickitz.svg)] mask-no-repeat"></div>
           <div className="hidden gap-[60px] md:flex">
             <p>
               <Link to={'/'}>Home</Link>
@@ -39,7 +35,7 @@ export default function Header() {
           {auth.user ? (
             <button
               onClick={handleLogout}
-              className="hidden text-red-500 md:flex"
+              className="hidden md:flex rounded-md border border-red-500 bg-red-600 px-4 py-[5px] text-white"
             >
               logout
             </button>
@@ -62,9 +58,9 @@ export default function Header() {
       <div
         className={`${
           toogleHamburger ? 'hidden' : 'flex'
-        } bg-black/40 fixed top-0  z-50 h-screen w-full flex-col`}
+        } fixed top-0 z-50 h-screen w-full flex-col bg-black/40`}
       >
-        <div className='bg-primary h-screen w-[75%] fixed top-0 right-0'>
+        <div className="bg-primary fixed top-0 right-0 h-screen w-[75%]">
           <div className="flex w-full justify-end px-6 py-[30px]">
             <button onClick={handleToogle}>
               <img src="/close-x.svg" alt="" className="h-6 w-6" />
@@ -77,14 +73,16 @@ export default function Header() {
           </ul>
           <section className="absolute bottom-10 w-full">
             {auth.user ? (
-              <div className="flex w-full justify-end px-7">
-                <button
-                  onClick={handleLogout}
-                  className="rounded-md border border-white px-6 py-[5px] text-white"
-                >
-                  logout
-                </button>
-              </div>
+              <>
+                <div className="flex w-full justify-end px-7">
+                  <button
+                    onClick={handleLogout}
+                    className="rounded-md border border-white px-6 py-[5px] text-white"
+                  >
+                    logout
+                  </button>
+                </div>
+              </>
             ) : (
               <div className="flex justify-evenly gap-4">
                 <button className="rounded-md border border-white px-6 py-[5px] text-white">

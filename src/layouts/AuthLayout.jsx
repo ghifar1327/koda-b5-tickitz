@@ -5,7 +5,8 @@ export default function AuthLayout() {
   const auth = useSelector((state) => state.authentication);
   return (
     <>
-      <main className="relative flex h-screen w-full flex-col items-center bg-[url(/MaskGroup.png)] bg-cover bg-center">
+      <main className="flex h-screen w-full flex-col items-center">
+        <div className='fixed bg-[url(/MaskGroup.png)] bg-cover bg-center h-screen w-full'></div>
         <div className="fixed inset-0 bg-black/60"></div>
         {auth.fetchStatus.login.isLoading && (
           <>
