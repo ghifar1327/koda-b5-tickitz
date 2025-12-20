@@ -1,6 +1,14 @@
-import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleSeat } from '../../redux/slices/purchase.slice';
+import AddTicketModal from './AddTicketModal';
+import { useState } from 'react';
 
 export default function ChooseSeatMobile() {
+  const [column, setColumn] = useState('');
+  const [row, setRow] = useState('');
+  const dispatch = useDispatch();
+  const selectedSeats = useSelector((state) => state.purchases.choosed_seats);
+
   const seatLeft = [
     'A1',
     'A2',
@@ -52,6 +60,7 @@ export default function ChooseSeatMobile() {
     'G6',
     'G7',
   ];
+
   const seatRight = [
     'A8',
     'A9',
@@ -103,20 +112,44 @@ export default function ChooseSeatMobile() {
     'G14',
   ];
 
+  function handleInput(e) {
+    e.preventDefault();
+    const letter = e.target.column.value;
+    const number = e.target.row.value;
+    const seat = `${letter}${number}`;
+    if(seat == 'F10' || seat === 'F11' ){
+      console.log('F10/F11')
+      dispatch(toggleSeat('F10/F11'))
+      return
+    }
+    console.log(seat)
+    dispatch(toggleSeat(seat));
+    e.target.column.value = ''
+    e.target.row.value = ''
+
+  }
+
+  const [toogle, setToogle] = useState(true);
+  function submitPurchase() {
+    setToogle((prevToogle) => !prevToogle);
+  }
   return (
     <>
-      <p className="md:hidden mt-4">Selected Seats:</p>
+      <p className="mt-4 md:hidden">Selected Seats:</p>
       <div className="h-1 w-full rounded-full bg-[#CF0F0F] md:hidden"></div>
+
       <article className="flex w-full justify-between md:hidden">
+        {/* LEFT SEATS */}
         <div className="flex gap-2">
           <div className="my-2 w-0.5 rounded-full bg-[#BBCB64]"></div>
           <div>
             <section className="mt-4 mb-2 grid w-fit grid-cols-7 gap-2">
               {seatLeft.map((item) => {
+                const isSelected = selectedSeats.includes(item);
                 return (
                   <div
-                    id={item}
-                    className="h-4 w-4 rounded-sm bg-[#D6D8E7]"
+                    key={item}
+                    className={`${isSelected ? 'bg-primary':'bg-[#D6D8E7]'} w-4  h-4 rounded-sm`}
                   ></div>
                 );
               })}
@@ -124,26 +157,33 @@ export default function ChooseSeatMobile() {
             <div className="h-1 w-full rounded-full bg-amber-700"></div>
           </div>
         </div>
-        <div className="">
+
+        <div>
           <section className="mt-4 mb-2 grid w-fit grid-cols-7 gap-2">
             {seatRight.map((item) => {
+              const isSelected = selectedSeats.includes(item);
+              const isLoveNest = item === 'F10/F11';
               return (
                 <div
-                  id={item}
-                  className={`${
-                    item === 'F10/F11'
+                  key={item}
+                  className={`h-4 rounded-sm ${
+                    isLoveNest
                       ? 'col-span-2 w-full bg-[#F589D7]'
-                      : 'w-4 bg-[#D6D8E7]'
-                  } h-4 rounded-sm`}
-                ></div>
+                        : 'w-4 bg-[#D6D8E7]'
+                  } `}
+                >
+                  <div className={`h-4 w-full ${isSelected? "bg-primary": ''} rounded-sm`}></div>
+                </div>
               );
             })}
           </section>
           <div className="h-1 w-full rounded-full bg-amber-700"></div>
         </div>
       </article>
+
       <article className="mt-4 flex flex-col gap-6 md:hidden">
         <h2>Seating Key</h2>
+
         <section className="grid grid-cols-2 gap-4">
           <div className="flex items-center gap-2">
             <img src="/ForwardArrow.svg" alt="" className="h-4 w-4 rotate-90" />
@@ -155,7 +195,7 @@ export default function ChooseSeatMobile() {
           </div>
           <div className="flex items-center gap-2">
             <div className="h-4 w-4 rounded-md bg-[#D6D8E7]"></div>
-            <p>Avaliable</p>
+            <p>Available</p>
           </div>
           <div className="flex items-center gap-2">
             <div className="h-4 w-4 rounded-md bg-[#1D4ED8]"></div>
@@ -170,58 +210,66 @@ export default function ChooseSeatMobile() {
             <p>Sold</p>
           </div>
         </section>
+
         <div>
           <p>Choosed</p>
-          <p>C4</p>
+          <p>{selectedSeats.join(', ') || '-'}</p>
         </div>
-        <div className="flex justify-between">
-          <div className="flex">
-            <select
-              name=""
-              id=""
-              className="h-13 w-30 rounded-l-md bg-[#EFF0F6] px-5 outline-0"
-            >
-              <option value="A">A</option>
-              <option value="B">B</option>
-              <option value="C">C</option>
-              <option value="D">D</option>
-              <option value="E">E</option>
-              <option value="F">F</option>
-              <option value="G">G</option>
-            </select>
-            <div className="h-full w-5 rounded-r-md bg-[#EFF0F6]"></div>
+        <form onSubmit={handleInput}>
+          <div className="flex justify-between">
+            <div className="flex">
+              <select
+              name='column'
+                value={column}
+                onChange={(e) => setColumn(e.target.value)}
+                className="h-13 w-30 rounded-l-md bg-[#EFF0F6] px-5 outline-0"
+              >
+                {['A', 'B', 'C', 'D', 'E', 'F', 'G'].map((c) => (
+                  <option key={c} value={c}>
+                    {c}
+                  </option>
+                ))}
+              </select>
+              <div className="h-full w-5 rounded-r-md bg-[#EFF0F6]"></div>
+            </div>
+
+            <div className="flex">
+              <select
+              name='row'
+                value={row}
+                onChange={(e) => setRow(e.target.value)}
+                className="h-13 w-30 rounded-l-md bg-[#EFF0F6] px-5 outline-0"
+              >
+                {Array.from({ length: 14 }, (_, i) => i + 1).map((n) => (
+                  <option key={n} value={n}>
+                    {n}
+                  </option>
+                ))}
+              </select>
+              <div className="h-full w-5 rounded-r-md bg-[#EFF0F6]"></div>
+            </div>
           </div>
-          <div className="flex">
-            <select
-              name=""
-              id=""
-              className="h-13 w-30 rounded-l-md bg-[#EFF0F6] px-5 outline-0"
+
+
+          <button
+            type="submit"
+            disabled={selectedSeats.includes(`${column}${row}`)}
+            className="text-primary border-primary mt-10 w-full rounded-xl border-2 p-5 font-semibold">
+            Add new seat
+          </button>
+
+        </form>
+          <div className="relative">
+            <button
+              onClick={submitPurchase}
+              className="bg-primary absolute top-30 flex w-full justify-center rounded-md p-5 text-center text-white md:hidden"
             >
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-              <option value="11">11</option>
-              <option value="12">12</option>
-              <option value="13">13</option>
-              <option value="14">14</option>
-              <option value="15">15</option>
-              <option value="16">16</option>
-              <option value="17">17</option>
-            </select>
-            <div className="h-full w-5 rounded-r-md bg-[#EFF0F6]"></div>
+              Submit
+            </button>
           </div>
-        </div>
-        <button className="text-primary border-primary w-full rounded-xl border-2 p-5 font-semibold">
-          Add new seat
-        </button>
       </article>
+
+      <AddTicketModal toogle={toogle} submitPurchase={submitPurchase} selectedSeats={selectedSeats}/>
     </>
   );
 }

@@ -1,44 +1,46 @@
-import { useEffect, useState } from 'react';
+import { useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
-import {
-  getMovieGenresThunk,
-  getMoviesThunk,
-} from '../redux/slices/fetchMovie.slice';
 import ChooseSeat from './ChooseSeat';
 import ChooseSeatMobile from './mobile/ChooseSeatMobile';
+import { setSubtotal } from '../redux/slices/purchase.slice';
 
 export default function OrderTicket() {
-  const [prieceForSeat, setPriceForSeat] = useState(0);
-  const [selectedSeats, setSelectedSeats] = useState([]);
-  const reguler = 10;
-  const loveSeat = 'F10/F11';
+  // const [prieceForSeat, setPriceForSeat] = useState(0);
+  // const [selectedSeats, setSelectedSeats] = useState([]);
+  const dispatch = useDispatch();
+  const purchase = useSelector((state) => state.purchases);
+  const getMovies = useSelector((state) => state.movies);
+  const selectedSeats = purchase.choosed_seats;
+  const priceForSeat = purchase.subtotal;
 
   useEffect(() => {
-    let subTotal = 0;
+    const reguler = 10;
+    const loveSeat = 'F10/F11';
+
+    let total = 0;
+
     selectedSeats.forEach((seat) => {
       if (seat === loveSeat) {
-        subTotal += 20;
+        total += 20;
       } else {
-        subTotal += reguler;
+        total += reguler;
       }
-      setPriceForSeat(subTotal);
     });
-  }, [selectedSeats]);
 
-  const dispatch = useDispatch();
-  const getMovies = useSelector((state) => state.movies);
+    dispatch(setSubtotal(total));
+  }, [selectedSeats, dispatch]);
+
+  // const dispatch = useDispatch();
   const movies = getMovies.movies;
   const genres = getMovies.genres;
-  useEffect(() => {
-    dispatch(getMoviesThunk());
-    dispatch(getMovieGenresThunk());
-  }, []);
   const { id } = useParams();
   const idParams = parseInt(id);
   const movie = movies.find((movie) => movie.id === idParams);
-  console.log(movie);
-  console.log(id);
+
+  // console.log(movie);
+  // console.log(id);
+
 
   return (
     <>
@@ -81,6 +83,7 @@ export default function OrderTicket() {
                 <div className="flex h-full flex-col justify-between">
                   <h1>{movie.title}</h1>
                   <section>
+                    
                     <div className="flex justify-center gap-3 md:justify-start">
                       {movie.genreId.slice(0, 2).map((id) => {
                         const genre = genres.find((g) => g.id === id);
@@ -109,56 +112,60 @@ export default function OrderTicket() {
               </button>
             </div>
           </article>
-          <ChooseSeat
-            setSelectedSeats={setSelectedSeats}
-            selectedSeats={selectedSeats}
-          />
-          <ChooseSeatMobile />
+          <ChooseSeat />
+          <ChooseSeatMobile/>
         </div>
-        <div className="hidden flex-col md:flex">
-          <article className="rounded-md bg-white">
-            <section>
-              <div className="flex flex-col gap-2 p-6 py-10">
-                <div className="flex flex-col items-center gap-2 pb-2">
-                  <img
-                    src="/cineone.svg"
-                    alt="cine one"
-                    className="h-4 w-[124px]"
-                  />
-                  <h1 className="text-center text-[30px]">CineOne21 Cinema</h1>
+        <div>
+          <article className="hidden flex-col md:flex">
+            <div className="rounded-md bg-white">
+              <section>
+                <div className="flex flex-col gap-2 p-6 py-10">
+                  <div className="flex flex-col items-center gap-2 pb-2">
+                    <img
+                      src="/cineone.svg"
+                      alt="cine one"
+                      className="h-4 w-[124px]"
+                    />
+                    <h1 className="text-center text-[30px]">
+                      CineOne21 Cinema
+                    </h1>
+                  </div>
+                  <div className="flex justify-between text-[14px]">
+                    <p className="text-[#6B6B6B]">Movie selected</p>
+                    <p className="line-clamp-1 w-[60%] text-end font-bold">
+                      {movie.title}
+                    </p>
+                  </div>
+                  <div className="flex justify-between text-[14px]">
+                    <p className="text-[#6B6B6B]">Tuesdey, 07 July 2020</p>
+                    <p className="font-bold">13 : 00 PM</p>
+                  </div>
+                  <div className="flex justify-between text-[14px]">
+                    <p className="text-[#6B6B6B]">One Ticket Price</p>
+                    <p className="font-bold">$ 10</p>
+                  </div>
+                  <div className="flex justify-between text-[14px]">
+                    <p className="text-[#6B6B6B]">Seat Choosed</p>
+                    <p className="line-clamp-6 font-bold">
+                      {' '}
+                      {selectedSeats.join(', ')}
+                    </p>
+                  </div>
                 </div>
-                <div className="flex justify-between text-[14px]">
-                  <p className="text-[#6B6B6B]">Movie selected</p>
-                  <p className="line-clamp-1 w-[60%] text-end font-bold">
-                    {movie.title}
-                  </p>
+                <hr />
+                <div className="flex justify-between p-6">
+                  <p className="font-bold">Total Payment</p>
+                  <p className="text-primary font-bold">{`$ ${priceForSeat}`}</p>
                 </div>
-                <div className="flex justify-between text-[14px]">
-                  <p className="text-[#6B6B6B]">Tuesdey, 07 July 2020</p>
-                  <p className="font-bold">13 : 00 PM</p>
-                </div>
-                <div className="flex justify-between text-[14px]">
-                  <p className="text-[#6B6B6B]">One Ticket Price</p>
-                  <p className="font-bold">$ 10</p>
-                </div>
-                <div className="flex justify-between text-[14px]">
-                  <p className="text-[#6B6B6B]">Seat Choosed</p>
-                  <p className="line-clamp-6 font-bold">
-                    {' '}
-                    {selectedSeats.join(', ')}
-                  </p>
-                </div>
-              </div>
-              <hr />
-              <div className="flex justify-between p-6">
-                <p className="font-bold">Total Payment</p>
-                <p className="text-primary font-bold">{`$ ${prieceForSeat}`}</p>
-              </div>
-            </section>
+              </section>
+            </div>
+            <div>
+              <button className="bg-primary mt-10 w-full rounded-md p-3 text-center text-white">
+                Checkout Now
+              </button>
+            </div>
           </article>
-          <button className="bg-primary mt-10 w-full rounded-md p-3 text-center text-white">
-            Checkout Now
-          </button>
+
         </div>
       </main>
     </>
