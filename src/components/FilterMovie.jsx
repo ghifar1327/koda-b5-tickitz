@@ -1,75 +1,55 @@
-import React from 'react';
+export default function FilterMovie({
+  search,
+  setSearch,
+  selectedGenres,
+  setSelectedGenres,
+  genres,
+}) {
+  function handleCheckbox(id) {
+    setSelectedGenres((prev) =>
+      prev.includes(id)
+        ? prev.filter((g) => g !== id)
+        : [...prev, id],
+    );
+  }
 
-export default function FilterMovie() {
   return (
-    <form className="mt-[72px] flex gap-2.5 px-[180px]">
-      <label htmlFor="">
-        <p className="mb-3">Cari Event</p>
-        <div className="flex w-[340px] items-center rounded-sm border border-[#DEDEDE] p-[18px]">
-          <img src="Search.png" alt="" className="h-6 w-6" />
-          <input type="text" className="w-full outline-none" />
+    <form className="mt-[72px] flex flex-col md:flex-row gap-5 px-5 md:px-[180px]">
+      <label>
+        <p className="mb-3">Cari Movie</p>
+        <div className="flex w-[340px] items-center rounded-sm border p-[18px]">
+          <input
+            type="text"
+            placeholder="Search movie..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="w-full outline-none"
+          />
         </div>
       </label>
-      <label htmlFor="">
-        <p className="mb-6">Filter</p>
-        <div className="flex gap-3">
-          <label className="flex cursor-pointer items-center select-none">
-            <input
-              type="checkbox"
-              name="Thiler"
-              id="Thiler"
-              className="peer hidden"
-            />
-            <div className="flex h-10 w-24 items-center justify-center rounded-md transition peer-checked:bg-primary peer-checked:text-white">
-              Thriller
-            </div>
-          </label>
-          <label className="flex cursor-pointer items-center select-none">
-            <input
-              type="checkbox"
-              name="horor"
-              id="horor"
-              className="peer hidden"
-            />
-            <div className="flex h-10 w-24 items-center justify-center rounded-md transition peer-checked:bg-primary peer-checked:text-white">
-              Horror
-            </div>
-          </label>
-          <label className="flex cursor-pointer items-center select-none">
-            <input
-              type="checkbox"
-              name="romantic"
-              id="romantic"
-              className="peer hidden"
-            />
-            <div className="flex h-10 w-24 items-center justify-center rounded-md transition peer-checked:bg-primary peer-checked:text-white">
-              Romantic
-            </div>
-          </label>
-          <label className="flex cursor-pointer items-center select-none">
-            <input
-              type="checkbox"
-              name="adventure"
-              id="adventure"
-              className="peer hidden"
-            />
-            <div className="flex h-10 w-24 items-center justify-center rounded-md transition peer-checked:bg-primary peer-checked:text-white">
-              Adventure
-            </div>
-          </label>
-          <label className="flex cursor-pointer items-center select-none">
-            <input
-              type="checkbox"
-              name="sci-fi"
-              id="sci-fi"
-              className="peer hidden"
-            />
-            <div className="flex h-10 w-24 items-center justify-center rounded-md transition peer-checked:bg-primary peer-checked:text-white">
-              Sci-Fi
-            </div>
-          </label>
+
+      <div>
+        <p className="mb-3">Filter Genre</p>
+        <div className="flex flex-wrap gap-3">
+          {genres.slice(0,5).map((genre) => (
+            <label
+              key={genre.id}
+              className="cursor-pointer select-none"
+            >
+              <input
+                type="checkbox"
+                className="peer hidden"
+                checked={selectedGenres.includes(genre.id)}
+                onChange={() => handleCheckbox(genre.id)}
+              />
+              <div className="flex h-10 w-24 items-center justify-center rounded-md transition
+                peer-checked:bg-primary peer-checked:text-white">
+                {genre.name}
+              </div>
+            </label>
+          ))}
         </div>
-      </label>
+      </div>
     </form>
   );
 }

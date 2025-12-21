@@ -10,6 +10,8 @@ import OrderTicket from "./pages/OrderTicket";
 import NotFound from "./pages/NotFound";
 import Movies from "./pages/Movies";
 import ResultPayment from "./pages/ResultPayment";
+import UserLayout from "./layouts/UserLayout";
+import Profile from "./pages/Profile";
 
 export default function Router() {
   return (
@@ -26,6 +28,9 @@ export default function Router() {
         <Route element={<AuthLayout />}>
           <Route path="login" element={<InputLogin />} />
           <Route path="register" element={<InputRegister />} />
+        </Route>
+        <Route element={<UserLayout/>}>
+          <Route path="profile" element={<Profile/>}/>
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>

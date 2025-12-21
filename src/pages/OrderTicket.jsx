@@ -2,12 +2,10 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router';
 import ChooseSeat from '../components/ChooseSeat';
-import { setSubtotal } from '../redux/slices/purchase.slice';
+import { setMovie, setSubtotal } from '../redux/slices/purchase.slice';
 import ChooseSeatMobile from '../components/ChooseSeatMobile';
 
 export default function OrderTicket() {
-  // const [prieceForSeat, setPriceForSeat] = useState(0);
-  // const [selectedSeats, setSelectedSeats] = useState([]);
   const dispatch = useDispatch();
   const getMovies = useSelector((state) => state.movies);
   const purchase = useSelector((state) => state.purchases);
@@ -37,9 +35,7 @@ export default function OrderTicket() {
   const { id } = useParams();
   const idParams = parseInt(id);
   const movie = movies.find((movie) => movie.id === idParams);
-
-  // console.log(movie);
-  // console.log(id);
+  dispatch(setMovie(movie.title));
 
   return (
     <>

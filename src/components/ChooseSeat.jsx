@@ -191,7 +191,7 @@ export default function ChooseSeat() {
           </div>
         </section>
       </form>
-      <div className='mt-8'>
+      <div className='mt-8 hidden md:flex flex-col'>
         <h1 className=' text-[18px] font-semibold'>Seating key</h1>
         <div className='flex justify-evenly mt-8 text-[#4E4B66]'>
           <section className='flex items-center gap-4'><div className='w-8 h-8 rounded bg-[#D6D8E7]'></div><p>Available</p></section>

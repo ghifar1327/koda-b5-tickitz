@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  history: [],
   movie: '',
   cinema: '',
   location: '',
@@ -45,18 +44,6 @@ const purchaseSlice = createSlice({
       state.subtotal = action.payload;
     },
 
-    saveHistory(state) {
-      state.history.push({
-        movie: state.movie,
-        cinema: state.cinema,
-        location: state.location,
-        dates: state.dates,
-        seats: state.choosed_seats,
-        subtotal: state.subtotal,
-        createdAt: new Date().toISOString(),
-      });
-    },
-
     resetPurchase(state) {
       state.movie = '';
       state.cinema = '';
@@ -74,7 +61,6 @@ export const {
   setDates,
   setChoosedSeat,
   setSubtotal,
-  saveHistory,
   resetPurchase,
 } = purchaseSlice.actions;
 

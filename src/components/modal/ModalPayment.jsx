@@ -1,7 +1,10 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router';
 
 export default function ModalPayment({ toggle }) {
+    const itemRequest = useSelector((state)=> state.purchases)
+  const priceForSeat = itemRequest.subtotal
   const { id } = useParams();
   return (
     <>
@@ -21,7 +24,7 @@ export default function ModalPayment({ toggle }) {
           </div>
           <div className="flex items-center justify-between">
             <p className="text-[#8692A6]">Total payment</p>
-            <p className="text-primary font-bold">$30</p>
+            <p className="text-primary font-bold">${priceForSeat}</p>
           </div>
           <div className="text-[#8692A6]">
             <p>

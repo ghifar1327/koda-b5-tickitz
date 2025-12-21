@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import FilterMovie from '../components/FilterMovie';
 import FormSubscribe from '../components/FormSubscribe';
 import { Link } from 'react-router';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import {
   getMovieGenresThunk,
   getMoviesThunk,
@@ -11,19 +11,31 @@ import {
 
 export default function Movies() {
   const dispatch = useDispatch();
-  const getMovies = useSelector((state) => state.movies);
-  const movies = getMovies.movies;
-  const genres = getMovies.genres;
+  const { movies, genres } = useSelector((state) => state.movies);
+
+  const [search, setSearch] = useState('');
+  const [selectedGenres, setSelectedGenres] = useState([]);
+
   useEffect(() => {
     dispatch(getMoviesThunk());
     dispatch(getMovieGenresThunk());
-  }, []);
+  }, [dispatch]);
+
+  const filteredMovies = movies.filter((movie) => {
+    const filterTitle = movie.title.toLowerCase().includes(search.toLowerCase());
+
+    const fleterGenre =
+      selectedGenres.length === 0 ||
+      movie.genreId.some((id) => selectedGenres.includes(id));
+
+    return filterTitle && fleterGenre;
+  });
   return (
     <>
       <hero>
         <div className="relative h-[462px] w-full items-center bg-[url(/MaskGroup.png)] bg-cover bg-center">
           <div className="absolute inset-0 bg-black/60">
-            <section className="flex h-full w-[838px] flex-col justify-center gap-4 pl-[180px]">
+            <section className="flex h-full flex-col justify-center gap-4 px-10 md:w-[838px] md:pl-[180px]">
               <p className="text[18px] font-bold text-white">
                 LIST MOVIE OF THE WEEK
               </p>
@@ -34,11 +46,16 @@ export default function Movies() {
           </div>
         </div>
       </hero>
-
-      <FilterMovie />
+      <FilterMovie
+        search={search}
+        setSearch={setSearch}
+        selectedGenres={selectedGenres}
+        setSelectedGenres={setSelectedGenres}
+        genres={genres}
+      />
       <article className="mt-14 flex justify-center">
-        <div className="grid grid-cols-4 gap-4">
-          {movies.slice(0, 12).map((item, index) => {
+        <div className="flex gap-4 overflow-x-scroll p-5 md:grid md:grid-cols-4">
+          {filteredMovies.slice(0, 12).map((item, index) => {
             return (
               <figure key={index} className="min-w-[265px] shrink-0">
                 <div className="group relative h-fit w-fit">
@@ -53,7 +70,7 @@ export default function Movies() {
                       </button>
                     </Link>
                     <Link to={`/order/${item.id}`}>
-                      <button className="h-12 w-[188px] rounded-md border border-primary bg-primary text-white">
+                      <button className="border-primary bg-primary h-12 w-[188px] rounded-md border text-white">
                         Buy Ticket
                       </button>
                     </Link>
@@ -81,8 +98,8 @@ export default function Movies() {
         </div>
       </article>
       <section className="my-[63px] flex justify-center gap-5">
-        <div className="flex h-10 w-10 justify-center rounded-full bg-primary text-white">
-          <button className="h-10 w-10 rounded-full bg-primary text-white">
+        <div className="bg-primary flex h-10 w-10 justify-center rounded-full text-white">
+          <button className="bg-primary h-10 w-10 rounded-full text-white">
             1
           </button>
         </div>
@@ -101,7 +118,7 @@ export default function Movies() {
             4
           </button>
         </div>
-        <div className="flex h-10 w-10 justify-center rounded-full bg-primary">
+        <div className="bg-primary flex h-10 w-10 justify-center rounded-full">
           <button className="">
             <img src="/arrow-white.png" alt="" className="h-6 w-6 rotate-180" />
           </button>

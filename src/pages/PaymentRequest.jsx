@@ -1,8 +1,17 @@
-import { useState } from "react";
-import ModalPayment from "../components/modal/ModalPayment";
+import { useEffect, useState } from 'react';
+import ModalPayment from '../components/modal/ModalPayment';
+import { useSelector, useDispatch } from 'react-redux';
+import { resetPurchase} from '../redux/slices/purchase.slice';
+import { useHistory } from '../contexts/HistoryContex';
 
 export default function PaymentRequest() {
-  const[toggle, setToggle] = useState(true)
+  const dispatch = useDispatch();
+  const { history ,addHistory } = useHistory();
+  const purchase = useSelector((state) => state.purchases);
+  console.log(purchase)
+  const priceForSeat = purchase.subtotal;
+  const seat = purchase.choosed_seats;
+  const [toggle, setToggle] = useState(true);
   const eWallet = [
     { name: 'googlepay', logo: 'google-pay.svg' },
     { name: 'visa.svg', logo: 'visa.svg' },
@@ -13,10 +22,24 @@ export default function PaymentRequest() {
     { name: 'bri', logo: 'bri.svg' },
     { name: 'ovo', logo: 'ovo.svg' },
   ];
-  function handleButton(){
-    setToggle((prevToggle)=> !prevToggle)
-    console.log(toggle)
+  function submitPayment() {
+    addHistory({
+      movie: purchase.movie,
+      cinema: purchase.cinema,
+      location: purchase.location,
+      dates: purchase.dates,
+      seats: purchase.choosed_seats,
+      subtotal: purchase.subtotal,
+    });
+    
+    setToggle((prevToggle) => !prevToggle);
+    dispatch(resetPurchase());
+    console.log(toggle);
+    console.log(history)
   }
+  useEffect(() => {
+  console.log("HISTORY:", history);
+}, [history]);
   return (
     <>
       <div className="flex justify-center bg-[#A0A3BD33] pt-[31px]">
@@ -44,7 +67,7 @@ export default function PaymentRequest() {
         </div>
       </div>
       <main className="flex justify-center bg-[#A0A3BD33] p-5">
-        <article className="flex w-[732px] flex-col gap-10 rounded-md bg-white px-[37px] py-[52px] mb-10">
+        <article className="mb-10 flex w-[732px] flex-col gap-10 rounded-md bg-white px-[37px] py-[52px]">
           <h1 className="text-[24px] font-bold">Payment Info</h1>
           <section className="flex flex-col gap-3">
             <div className="flex flex-col gap-3">
@@ -54,7 +77,7 @@ export default function PaymentRequest() {
             </div>
             <div className="flex flex-col gap-3">
               <h2 className="font-semibold text-[#8692A6]">MOVIE TITLE</h2>
-              <p>SPEDERMAN</p>
+              <p>{purchase.movie}</p>
               <div className="h-px w-full bg-[#E6E6E6]" />
             </div>
             <div className="flex flex-col gap-3">
@@ -66,12 +89,12 @@ export default function PaymentRequest() {
               <h2 className="font-semibold text-[#8692A6]">
                 NUMBER OF TICKETS
               </h2>
-              <p>3 Pieces</p>
+              <p>{`${seat.length} peace`}</p>
               <div className="h-px w-full bg-[#E6E6E6]" />
             </div>
             <div className="flex flex-col gap-3">
               <h2 className="font-semibold text-[#8692A6]">TOTAL PAYMENT</h2>
-              <p>$30</p>
+              <p>${priceForSeat}</p>
               <div className="h-px w-full bg-[#E6E6E6]" />
             </div>
           </section>
@@ -133,12 +156,15 @@ export default function PaymentRequest() {
               })}
             </div>
           </section>
-          <button onClick={handleButton}  className="bg-primary w-full rounded-md p-3 text-white">
+          <button
+            onClick={submitPayment}
+            className="bg-primary w-full rounded-md p-3 text-white"
+          >
             Pay your order
           </button>
         </article>
       </main>
-      <ModalPayment toggle={toggle}/>
+      <ModalPayment toggle={toggle} />
     </>
   );
 }

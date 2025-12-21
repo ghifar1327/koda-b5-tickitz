@@ -3,7 +3,7 @@ import fetchUrl from "../utils/fetch";
 export const getMovie = async (url) => {
   try {
     const moviesData = await fetchUrl(url);
-    console.log(moviesData);
+    // console.log(moviesData);
     const result = moviesData.results.map((idx) => {
       return {
         id: idx.id,

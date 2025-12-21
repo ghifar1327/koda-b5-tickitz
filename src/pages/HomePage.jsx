@@ -14,6 +14,7 @@ export default function HomePage() {
   const getMovies = useSelector((state) => state.movies);
   const movies = getMovies.movies;
   const genres = getMovies.genres;
+  console.log(movies)
   useEffect(() => {
     dispatch(getMoviesThunk());
     dispatch(getMovieGenresThunk());

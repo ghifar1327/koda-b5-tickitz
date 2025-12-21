@@ -136,7 +136,7 @@ export default function ChooseSeatMobile() {
       <article className="flex w-full justify-between md:hidden">
         {/* LEFT SEATS */}
         <div className="flex gap-2">
-          <div className="my-2 w-0.5 rounded-full bg-[#BBCB64]"></div>
+          <div className="my-2 w-1 rounded-full bg-[#BBCB64]"></div>
           <div>
             <section className="mt-4 mb-2 grid w-fit grid-cols-7 gap-2">
               {seatLeft.map((item) => {
@@ -144,7 +144,7 @@ export default function ChooseSeatMobile() {
                 return (
                   <div
                     key={item}
-                    className={`${isSelected ? 'bg-primary' : 'bg-[#D6D8E7]'} h-4 w-4 rounded-sm`}
+                    className={`${isSelected ? 'bg-primary' : 'bg-[#D6D8E7]'} h-6 w-6 rounded-sm`}
                   ></div>
                 );
               })}
@@ -161,14 +161,14 @@ export default function ChooseSeatMobile() {
               return (
                 <div
                   key={item}
-                  className={`h-4 rounded-sm ${
+                  className={`h-6 rounded-sm ${
                     isLoveNest
                       ? 'col-span-2 w-full bg-[#F589D7]'
-                      : 'w-4 bg-[#D6D8E7]'
+                      : 'w-6 bg-[#D6D8E7]'
                   } `}
                 >
                   <div
-                    className={`h-4 w-full ${isSelected ? 'bg-primary' : ''} rounded-sm`}
+                    className={`h-6 w-full ${isSelected ? 'bg-primary' : ''} rounded-sm`}
                   ></div>
                 </div>
               );
@@ -183,27 +183,27 @@ export default function ChooseSeatMobile() {
 
         <section className="grid grid-cols-2 gap-4">
           <div className="flex items-center gap-2">
-            <img src="/ForwardArrow.svg" alt="" className="h-4 w-4 rotate-90" />
+            <img src="/ForwardArrow.svg" alt="" className="h-6 w-6 rotate-90" />
             <p>A - G</p>
           </div>
           <div className="flex items-center gap-2">
-            <img src="/ForwardArrow.svg" alt="" className="h-4 w-4" />
+            <img src="/ForwardArrow.svg" alt="" className="h-6 w-6" />
             <p>1 - 14</p>
           </div>
           <div className="flex items-center gap-2">
-            <div className="h-4 w-4 rounded-md bg-[#D6D8E7]"></div>
+            <div className="h-6 w-6 rounded-md bg-[#D6D8E7]"></div>
             <p>Available</p>
           </div>
           <div className="flex items-center gap-2">
-            <div className="h-4 w-4 rounded-md bg-[#1D4ED8]"></div>
+            <div className="h-6 w-6 rounded-md bg-primary"></div>
             <p>Selected</p>
           </div>
           <div className="flex items-center gap-2">
-            <div className="h-4 w-4 rounded-md bg-[#F589D7]"></div>
+            <div className="h-6 w-6 rounded-md bg-[#F589D7]"></div>
             <p>Love Nest</p>
           </div>
           <div className="flex items-center gap-2">
-            <div className="h-4 w-4 rounded-md bg-[#6E7191]"></div>
+            <div className="h-6 w-6 rounded-md bg-[#6E7191]"></div>
             <p>Sold</p>
           </div>
         </section>
