@@ -3,12 +3,13 @@ import MainLayout from "./layouts/MainLayout";
 import AuthLayout from "./layouts/AuthLayout";
 import InputLogin from "./components/InputLogin";
 import InputRegister from "./components/InputRegister";
-import DetailMovie from "./components/DetailMovie";
+import DetailMovie from "./pages/DetailMovie";
 import HomePageComponent from "./pages/HomePage";
-
-import OrderTicket from "./components/OrderTicket";
+import PaymentRequest from "./pages/PaymentRequest";
+import OrderTicket from "./pages/OrderTicket";
 import NotFound from "./pages/NotFound";
 import Movies from "./pages/Movies";
+import ResultPayment from "./pages/ResultPayment";
 
 export default function Router() {
   return (
@@ -19,6 +20,8 @@ export default function Router() {
           <Route path="movie" element={<Movies />} />
           <Route path="detail/:id" element={<DetailMovie />} />
           <Route path="order/:id" element={<OrderTicket />} />
+          <Route path="payment/:id" element={<PaymentRequest />} />
+          <Route path="result/:id" element={<ResultPayment />} />
         </Route>
         <Route element={<AuthLayout />}>
           <Route path="login" element={<InputLogin />} />

@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router';
+import { Link, useParams } from 'react-router';
 
-export default function AddTicketModal({ toogle, submitPurchase, selectedSeats}) {
+export default function ModalAddTicket({ toogle, submitPurchase, selectedSeats}) {
   const { id } = useParams();
   const idParams = parseInt(id);
   const movies = useSelector((state) => state.movies.movies);
@@ -11,7 +11,6 @@ export default function AddTicketModal({ toogle, submitPurchase, selectedSeats})
 //   const selectedSeats = purchase.choosed_seats;
   const priceForSeat = purchase.subtotal;
 
-  
   return (
     <div
       className={`${toogle ? 'hidden' : 'flex'} fixed top-0 left-0 z-1 h-screen w-full items-center justify-center bg-black/50`}
@@ -57,9 +56,11 @@ export default function AddTicketModal({ toogle, submitPurchase, selectedSeats})
             </div>
           </section>
         </article>
+        <Link to={`/payment/${id}`}>
         <button className="border-primary text-primary mt-5 w-full rounded-md border-3 bg-white p-3 text-center">
           Confirm Order
         </button>
+        </Link>
         <button
           className="bg-primary mt-2 w-full rounded-md p-3 text-center text-white"
           onClick={submitPurchase}

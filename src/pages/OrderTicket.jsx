@@ -1,16 +1,16 @@
-import { useEffect} from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router';
-import ChooseSeat from './ChooseSeat';
-import ChooseSeatMobile from './mobile/ChooseSeatMobile';
+import { Link, useParams } from 'react-router';
+import ChooseSeat from '../components/ChooseSeat';
 import { setSubtotal } from '../redux/slices/purchase.slice';
+import ChooseSeatMobile from '../components/ChooseSeatMobile';
 
 export default function OrderTicket() {
   // const [prieceForSeat, setPriceForSeat] = useState(0);
   // const [selectedSeats, setSelectedSeats] = useState([]);
   const dispatch = useDispatch();
-  const purchase = useSelector((state) => state.purchases);
   const getMovies = useSelector((state) => state.movies);
+  const purchase = useSelector((state) => state.purchases);
   const selectedSeats = purchase.choosed_seats;
   const priceForSeat = purchase.subtotal;
 
@@ -40,7 +40,6 @@ export default function OrderTicket() {
 
   // console.log(movie);
   // console.log(id);
-
 
   return (
     <>
@@ -83,7 +82,6 @@ export default function OrderTicket() {
                 <div className="flex h-full flex-col justify-between">
                   <h1>{movie.title}</h1>
                   <section>
-                    
                     <div className="flex justify-center gap-3 md:justify-start">
                       {movie.genreId.slice(0, 2).map((id) => {
                         const genre = genres.find((g) => g.id === id);
@@ -113,7 +111,7 @@ export default function OrderTicket() {
             </div>
           </article>
           <ChooseSeat />
-          <ChooseSeatMobile/>
+          <ChooseSeatMobile />
         </div>
         <div>
           <article className="hidden flex-col md:flex">
@@ -160,12 +158,13 @@ export default function OrderTicket() {
               </section>
             </div>
             <div>
-              <button className="bg-primary mt-10 w-full rounded-md p-3 text-center text-white">
-                Checkout Now
-              </button>
+              <Link to={`/payment/${id}`}>
+                <button className="bg-primary mt-10 w-full rounded-md p-3 text-center text-white">
+                  Checkout Now
+                </button>
+              </Link>
             </div>
           </article>
-
         </div>
       </main>
     </>

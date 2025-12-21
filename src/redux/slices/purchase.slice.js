@@ -30,8 +30,7 @@ const purchaseSlice = createSlice({
       state.dates = { ...state.dates, ...action.payload };
     },
 
-    // toggle seat
-    toggleSeat(state, action) {
+    setChoosedSeat(state, action) {
       const seat = action.payload;
       const exists = state.choosed_seats.includes(seat);
 
@@ -73,7 +72,7 @@ export const {
   setMovie,
   setCinema,
   setDates,
-  toggleSeat,
+  setChoosedSeat,
   setSubtotal,
   saveHistory,
   resetPurchase,

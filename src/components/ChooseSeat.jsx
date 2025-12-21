@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleSeat } from '../redux/slices/purchase.slice';
+import { setChoosedSeat } from '../redux/slices/purchase.slice';
 
 export default function ChooseSeat() {
   const dispatch = useDispatch();
@@ -7,7 +7,7 @@ export default function ChooseSeat() {
 
   const handleSeatChange = (seat) => {
     console.log(seat)
-    dispatch(toggleSeat(seat));
+    dispatch(setChoosedSeat(seat));
   };
 
   const seatLeft = [

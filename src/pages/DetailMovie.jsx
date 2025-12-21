@@ -1,7 +1,7 @@
 import { format } from 'date-fns';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import BookTicketInput from './BookTicketInput';
+import BookTicketInput from '../components/BookTicketInput';
 
 export default function DetailMovie() {
   const { id } = useParams();

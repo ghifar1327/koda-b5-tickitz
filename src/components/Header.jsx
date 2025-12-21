@@ -22,7 +22,7 @@ export default function Header() {
     <>
       <header className="px-6 py-[26px] md:px-[180px]">
         <nav className="flex items-center justify-between">
-          <div className="bg-primary h-10 w-80 mask-[url(/Tickitz.svg)] mask-no-repeat"></div>
+          <div className="bg-primary h-10 w-40 mask-[url(/Tickitz.svg)] mask-no-repeat"></div>
           <div className="hidden gap-[60px] md:flex">
             <p>
               <Link to={'/'}>Home</Link>

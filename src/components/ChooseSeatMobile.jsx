@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleSeat } from '../../redux/slices/purchase.slice';
-import AddTicketModal from './AddTicketModal';
+import { setChoosedSeat } from '../redux/slices/purchase.slice';
 import { useState } from 'react';
+import ModalAddTicket from './modal/ModalAddTicket';
 
 export default function ChooseSeatMobile() {
   const [column, setColumn] = useState('');
@@ -114,19 +114,14 @@ export default function ChooseSeatMobile() {
 
   function handleInput(e) {
     e.preventDefault();
-    const letter = e.target.column.value;
-    const number = e.target.row.value;
-    const seat = `${letter}${number}`;
-    if(seat == 'F10' || seat === 'F11' ){
-      console.log('F10/F11')
-      dispatch(toggleSeat('F10/F11'))
-      return
-    }
-    console.log(seat)
-    dispatch(toggleSeat(seat));
-    e.target.column.value = ''
-    e.target.row.value = ''
 
+    let seat = `${column}${row}`;
+
+    if (column === 'F' && (row === '10' || row === '11')) {
+      seat = 'F10/F11';
+    }
+
+    dispatch(setChoosedSeat(seat));
   }
 
   const [toogle, setToogle] = useState(true);
@@ -149,7 +144,7 @@ export default function ChooseSeatMobile() {
                 return (
                   <div
                     key={item}
-                    className={`${isSelected ? 'bg-primary':'bg-[#D6D8E7]'} w-4  h-4 rounded-sm`}
+                    className={`${isSelected ? 'bg-primary' : 'bg-[#D6D8E7]'} h-4 w-4 rounded-sm`}
                   ></div>
                 );
               })}
@@ -169,10 +164,12 @@ export default function ChooseSeatMobile() {
                   className={`h-4 rounded-sm ${
                     isLoveNest
                       ? 'col-span-2 w-full bg-[#F589D7]'
-                        : 'w-4 bg-[#D6D8E7]'
+                      : 'w-4 bg-[#D6D8E7]'
                   } `}
                 >
-                  <div className={`h-4 w-full ${isSelected? "bg-primary": ''} rounded-sm`}></div>
+                  <div
+                    className={`h-4 w-full ${isSelected ? 'bg-primary' : ''} rounded-sm`}
+                  ></div>
                 </div>
               );
             })}
@@ -219,7 +216,7 @@ export default function ChooseSeatMobile() {
           <div className="flex justify-between">
             <div className="flex">
               <select
-              name='column'
+                name="column"
                 value={column}
                 onChange={(e) => setColumn(e.target.value)}
                 className="h-13 w-30 rounded-l-md bg-[#EFF0F6] px-5 outline-0"
@@ -235,7 +232,7 @@ export default function ChooseSeatMobile() {
 
             <div className="flex">
               <select
-              name='row'
+                name="row"
                 value={row}
                 onChange={(e) => setRow(e.target.value)}
                 className="h-13 w-30 rounded-l-md bg-[#EFF0F6] px-5 outline-0"
@@ -249,27 +246,28 @@ export default function ChooseSeatMobile() {
               <div className="h-full w-5 rounded-r-md bg-[#EFF0F6]"></div>
             </div>
           </div>
-
-
           <button
             type="submit"
-            disabled={selectedSeats.includes(`${column}${row}`)}
-            className="text-primary border-primary mt-10 w-full rounded-xl border-2 p-5 font-semibold">
+            className="text-primary border-primary mt-10 w-full rounded-xl border-2 p-5 font-semibold"
+          >
             Add new seat
           </button>
-
         </form>
-          <div className="relative">
-            <button
-              onClick={submitPurchase}
-              className="bg-primary absolute top-30 flex w-full justify-center rounded-md p-5 text-center text-white md:hidden"
-            >
-              Submit
-            </button>
-          </div>
+        <div className="relative">
+          <button
+            onClick={submitPurchase}
+            className="bg-primary absolute top-30 flex w-full justify-center rounded-md p-5 text-center text-white md:hidden"
+          >
+            Submit
+          </button>
+        </div>
       </article>
 
-      <AddTicketModal toogle={toogle} submitPurchase={submitPurchase} selectedSeats={selectedSeats}/>
+      <ModalAddTicket
+        toogle={toogle}
+        submitPurchase={submitPurchase}
+        selectedSeats={selectedSeats}
+      />
     </>
   );
 }
