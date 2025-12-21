@@ -2,12 +2,14 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { getMovie, getMovieGenre } from "../../api/getTmdbData";
 
 const apiKey = import.meta.env.VITE_API_KEY;
+// const apiMoviePopular = import.meta.env.VITE_API_MOVIE_POPULAR;
+const apiMovieUpcoming = import.meta.env.VITE_API_MOVIE_UPCOMING;
 
 export const getMoviesThunk = createAsyncThunk(
   "movie/getMovie",
   async (payload, { rejectWithValue }) => {
     try {
-      const url = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`;
+      const url = `${apiMovieUpcoming}?api_key=${apiKey}`;
       const data = await getMovie(url);
       return data;
     //   console.log
